@@ -11,3 +11,4 @@ urlpatterns = [
     path('schedule', views.schedule),
     path('twitter', views.twitter),
 ]
+

@@ -1,17 +1,19 @@
 from django.shortcuts import render, redirect, reverse
 from django.conf import settings
 
-from Main.mixins import Directions
+#from Main.mixins import Directions
 
 
 def home(request):
+	"""
     context = {
 	"google_api_key": settings.GOOGLE_API_KEY,
 	"base_country": settings.BASE_COUNTRY}
-    return render(request, 'mapHome.html', context)
+	"""
+    return render(request, 'mapHome.html')
 
 def stops(request):
-
+	"""
     lat_a = request.GET.get("lat_a", None)
     long_a = request.GET.get("long_a", None)
     lat_b = request.GET.get("lat_b", None)
@@ -52,7 +54,8 @@ def stops(request):
 	"directions": directions,
 
 	}
-    return render(request, 'stops.html', context)
+	"""
+	return render(request, 'stops.html')
 
 def schedule(request):
     return render(request, 'schedule.html')

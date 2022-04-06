@@ -5,12 +5,13 @@ from django.conf import settings
 
 
 def home(request):
+	return render(request, 'mapHome.html')
 	"""
     context = {
 	"google_api_key": settings.GOOGLE_API_KEY,
 	"base_country": settings.BASE_COUNTRY}
 	"""
-    return render(request, 'mapHome.html')
+    
 
 def stops(request):
 	"""

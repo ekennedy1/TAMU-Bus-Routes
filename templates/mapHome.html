@@ -37,8 +37,9 @@
     }
   </style>
 </head>
-<body>
 
+<body>
+  <!-- Navigation Bar Header -->
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -53,29 +54,53 @@
     </div>
   </nav>
   
-<div class="container-fluid text-center">    
-  <div class="row content">
-    <div class="col-sm-2 sidenav">
-      <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">All Routes
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li>Reveile 12</li>
-          <li>Old Army 15</li>
-          <li>Excel 22</li>
-        </ul>
+  <!-- Main Body Content -->
+  <div class="container-fluid text-center">
+    <div class="row content">
+
+      <!-- Options Sidebar -->
+      <div class="col-sm-2 sidenav">
+
+        <!-- Route Selection -->
+        <h4>Select Route:</h4>
+        <select class="form-select" aria-label="routeSelectMap">
+          <option selected>All Routes</option>
+          <option value="Reveile 12">Reveile 12</option>
+          <option value="Old Army 15">Old Army 15</option>
+          <option value="Excel 22">Excel 22</option>
+        </select>
+
+        <!-- Date Input -->
+        <h4>Select Date:</h4>
+
+        <!-- Location Inputs -->
+        <div class="form-group">
+          <label for="start">Start Address:</label>
+          <input type="text" class="form-control" id="start">
+        </div>
+        <div class="form-group">
+          <label for="end">End Address:</label>
+          <input type="text" class="form-control" id="end">
+        </div>
+        
+        <!-- Confirm Input -->
+        <button label="mapNavigate">Navigate</button>
+
       </div>
-    </div>
-    <div class="col-sm-8 text-left"> 
-      <h1>Welcome</h1>
-      <p>Main body</p>
+
+      <!-- Map Area -->
+      <div class="col-sm-8 text-left"> 
+        <h1>Welcome</h1>
+        <p>Main body</p>
+      </div>
+
     </div>
   </div>
-</div>
 
-<footer class="container-fluid text-center">
-  <p>Footer Filler</p>
-</footer>
+  <!-- Footer Area -->
+  <footer class="container-fluid text-center">
+    <p>Footer Filler</p>
+  </footer>
 
 </body>
 </html>

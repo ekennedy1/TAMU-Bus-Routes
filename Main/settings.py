@@ -133,5 +133,7 @@ GOOGLE_API_KEY = "AIzaSyBxmWtpfIsyoqHltnUwqevXPRydi6nlvYk"
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+BASE_COUNTRY = "US"
+
 # Activate Django-Heroku.
 django_heroku.settings(locals())

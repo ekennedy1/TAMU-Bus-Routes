@@ -1,32 +1,35 @@
 from django.shortcuts import render, redirect, reverse
 from django.conf import settings
 
-#from Main.mixins import Directions
+from Main.mixins import Directions
 
 
 def home(request):
-	return render(request, 'mapHome.html')
-	"""
-    context = {
+
+	context = {
 	"google_api_key": settings.GOOGLE_API_KEY,
 	"base_country": settings.BASE_COUNTRY}
-	"""
+	return render(request, 'mapHome.html', context)
+
+	
+	
     
 
 def stops(request):
-	"""
-    lat_a = request.GET.get("lat_a", None)
-    long_a = request.GET.get("long_a", None)
-    lat_b = request.GET.get("lat_b", None)
-    long_b = request.GET.get("long_b", None)
-    lat_c = request.GET.get("lat_c", None)
-    long_c = request.GET.get("long_c", None)
-    lat_d = request.GET.get("lat_d", None)
-    long_d = request.GET.get("long_d", None)
+
+	lat_a = request.GET.get("lat_a", None)
+	long_a = request.GET.get("long_a", None)
+	lat_b = request.GET.get("lat_b", None)
+	long_b = request.GET.get("long_b", None)
+	lat_c = request.GET.get("lat_c", None)
+	long_c = request.GET.get("long_c", None)
+	lat_d = request.GET.get("lat_d", None)
+	long_d = request.GET.get("long_d", None)
 
 
-    if lat_a and lat_b and lat_c and lat_d:
-	    directions = Directions(
+	
+	if lat_a and lat_b and lat_c and lat_d:
+		directions = Directions(
 			lat_a= lat_a,
 			long_a=long_a,
 			lat_b = lat_b,
@@ -36,10 +39,11 @@ def stops(request):
 			lat_d = lat_d,
 			long_d=long_d
 			)
-    else:
-	    return redirect(reverse('Main:home'))
+	else:
+		return redirect(reverse('Main:home'))
+    
 
-    context = {
+	context = {
 	"google_api_key": settings.GOOGLE_API_KEY,
 	"base_country": settings.BASE_COUNTRY,
 	"lat_a": lat_a,
@@ -55,11 +59,13 @@ def stops(request):
 	"directions": directions,
 
 	}
-	"""
-	return render(request, 'stops.html')
+	
+	return render(request, 'stops.html', context)
+
+
 
 def schedule(request):
-    return render(request, 'schedule.html')
+	return render(request, 'schedule.html')
 
 def twitter(request):
     return render(request, 'twitter.html')

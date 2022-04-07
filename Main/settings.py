@@ -1,4 +1,5 @@
 import os
+import dotenv
 import dj_database_url
 import django_heroku
 
@@ -6,8 +7,13 @@ import django_heroku
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
+# Add environment variables locally
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "%ppjxiq8eyx=rj(0s(rzgziq&f@h0i!@gi1v1f2pw@yi4+an%0"
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -121,6 +127,7 @@ STATICFILES_DIRS = [
 ]
 
 GOOGLE_API_KEY = "AIzaSyBxmWtpfIsyoqHltnUwqevXPRydi6nlvYk"
+MAP_KEY = os.environ['MAP_KEY']
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/

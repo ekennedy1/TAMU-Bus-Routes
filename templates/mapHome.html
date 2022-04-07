@@ -65,21 +65,6 @@
   <div class="container-fluid text-center">
     <div class="row content">
       <h4>Main Area</h4>
-      <div class="col-sm-8 text-left" id="map"></div>
-      <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxmWtpfIsyoqHltnUwqevXPRydi6nlvYk&callback=initMap">
-      </script>
-      <script>
-        function initMap() {
-            var dumbo = {lat: 30.61227167400407, lng:-96.33600764570235};
-            var mapOptions = {
-                center: dumbo,
-                zoom: 14
-            };
-            var googlemap = new google.maps.Map(document.getElementById("map"), mapOptions);
-        }
-    </script>
-
 
       <!-- Options Sidebar -->
       <div class="col-sm-2 sidenav">
@@ -112,7 +97,10 @@
       </div>
 
       <!-- Map Area -->
-      
+      <div class="col-sm-8 text-left" id="map"></div>
+      <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxmWtpfIsyoqHltnUwqevXPRydi6nlvYk&callback=initMap">
+      </script>
 
     </div>
   </div>

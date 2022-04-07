@@ -66,10 +66,6 @@
     <div class="row content">
       <h4>Main Area</h4>
       <div class="col-sm-8 text-left" id="map"></div>
-      <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxmWtpfIsyoqHltnUwqevXPRydi6nlvYk&callback=initMap&v=weekly"
-        async
-      ></script>
       <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxmWtpfIsyoqHltnUwqevXPRydi6nlvYk&callback=initMap">
       </script>
@@ -78,7 +74,7 @@
             var dumbo = {lat: 30.61227167400407, lng:-96.33600764570235};
             var mapOptions = {
                 center: dumbo,
-                zoom: 8
+                zoom: 3
             };
             var googlemap = new google.maps.Map(document.getElementById("map"), mapOptions);
         }

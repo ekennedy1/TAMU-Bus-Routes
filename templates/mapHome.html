@@ -67,10 +67,19 @@
       <h4>Main Area</h4>
       <div class="col-sm-8 text-left" id="map"></div>
       <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxmWtpfIsyoqHltnUwqevXPRydi6nlvYk&callback=initMap&v=weekly"
-        async
+     
+      const uluru = { lat: -25.344, lng: 131.036 };
+    
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 4,
+        center: uluru,
+      });
+    
+      const marker = new google.maps.Marker({
+        position: uluru,
+        map: map,
+      });
       ></script>
-      <script initMap()></script>
 
       <!-- Options Sidebar -->
       <div class="col-sm-2 sidenav">

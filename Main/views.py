@@ -15,7 +15,7 @@ def home(request):
 	
     
 
-def stops(request):
+def schedule(request):
 
 	lat_a = request.GET.get("lat_a", None)
 	long_a = request.GET.get("long_a", None)
@@ -39,8 +39,7 @@ def stops(request):
 			lat_d = lat_d,
 			long_d=long_d
 			)
-	else:
-		return redirect(reverse('Main:home'))
+	
     
 
 	context = {
@@ -60,12 +59,12 @@ def stops(request):
 
 	}
 	
-	return render(request, 'stops.html', context)
+	return render(request, 'schedule.html', context)
 
 
 
-def schedule(request):
-	return render(request, 'schedule.html')
+def stops(request):
+	return render(request, 'stops.html')
 
 def twitter(request):
     return render(request, 'twitter.html')

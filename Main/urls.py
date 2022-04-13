@@ -7,7 +7,7 @@ urlpatterns = [
     path('', views.home),
     path('map', views.home),
     path('home', views.home),
-    path('stops', views.stops),
+    path('routes', views.stops),
     path('calendar', views.schedule),
     path('updates', views.twitter),
 ]

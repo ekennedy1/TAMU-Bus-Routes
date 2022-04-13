@@ -131,7 +131,7 @@ GOOGLE_API_KEY = "AIzaSyBxmWtpfIsyoqHltnUwqevXPRydi6nlvYk"
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 BASE_COUNTRY = "US"
 

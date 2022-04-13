@@ -9,7 +9,7 @@ def home(request):
 	context = {
 	"google_api_key": settings.GOOGLE_API_KEY,
 	"base_country": settings.BASE_COUNTRY}
-	return render(request, 'mapHome.html', context)
+	return render(request, 'main/mapHome.html', context)
 
 	
 	
@@ -59,12 +59,12 @@ def schedule(request):
 
 	}
 	
-	return render(request, 'schedule.html', context)
+	return render(request, 'main/schedule.html', context)
 
 
 
 def stops(request):
-	return render(request, 'stops.html')
+	return render(request, 'main/stops.html')
 
 def twitter(request):
-    return render(request, 'twitter.html')
+    return render(request, 'main/twitter.html')

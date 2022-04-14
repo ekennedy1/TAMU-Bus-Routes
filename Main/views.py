@@ -7,7 +7,8 @@ from Main.mixins import Directions
 def home(request):
 
 	context = {
-	"google_api_key": settings.GOOGLE_API_KEY,
+	"MAP_KEY": settings.MAP_KEY,
+	"MAP_URL": "https://maps.googleapis.com/maps/api/js?key=" + settings.MAP_KEY + "&callback=initMap",
 	"base_country": settings.BASE_COUNTRY}
 	return render(request, 'main/mapHome.html', context)
 
@@ -43,7 +44,7 @@ def schedule(request):
     
 
 	context = {
-	"google_api_key": settings.GOOGLE_API_KEY,
+	"MAP_KEY": settings.MAP_KEY,
 	"base_country": settings.BASE_COUNTRY,
 	"lat_a": lat_a,
 	"long_a": long_a,

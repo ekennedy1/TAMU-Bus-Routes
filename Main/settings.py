@@ -7,14 +7,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = '%ppjxiq8eyx=rj(0s(rzgziq&f@h0i!@gi1v1f2pw@yi4+an%0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 # Environment Variables
-MAP_KEY = os.environ.get('MAP_KEY')
-DATABASE_URL = os.environ.get('DATABASE_URL')
+MAP_KEY = 'AIzaSyBxmWtpfIsyoqHltnUwqevXPRydi6nlvYk'
+GOOGLE_API_KEY = "AIzaSyBxmWtpfIsyoqHltnUwqevXPRydi6nlvYk"
+DATABASE_URL = 'postgres://ubmpgdajzkyyla:334faf91a2ed955a33e71a4ada435a408309eaed1c647ae0d6a1fd1f2f48e1c8@ec2-52-21-136-176.compute-1.amazonaws.com:5432/dfbnrvjpoenila'
 
 # Application definition
 

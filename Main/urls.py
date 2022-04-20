@@ -4,10 +4,11 @@ from django.contrib import admin
 
 
 urlpatterns = [
-    path('', views.route, name="route"),
-    path('map', views.map, name="map"),
-    path('schedule', views.schedule),
+    path('', views.home),
+    path('map', views.home),
+    path('home', views.home),
     path('routes', views.stops),
+    path('calendar', views.schedule),
     path('updates', views.twitter),
 ]
 

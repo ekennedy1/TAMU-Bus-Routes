@@ -1,53 +1,27 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
-<head>
-  <title>TAMU Bus</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="{% static 'main.css' %}"></link>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script src="{% static 'functions.js' %}"></script>
-  <script src="{% static 'additional.js' %}"></script>
+<html lang="en">
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'additional.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="{% static 'functions.js' %}"></script>
+    <script src="{% static 'additional.js' %}"></script>
 
+    {% block extend_head %}
 
-  <style>
-      
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
-    
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 70px;
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-    
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-    
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;} 
-    }
-  </style>
+    {% endblock %}
+   
   
-  {% block extend_head %}
+  </head>
 
-  {% endblock %}
-
-</head>
 <body>
-
   <!-- Navigation Bar Header -->
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -55,34 +29,56 @@
         <a href="home"><img src="{% static 'logo.png' %}" class="img-rounded" alt="logo" width="60" height="60"></a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="">Map</a></li>
+        <li class="active"><a href="map">Map</a></li>
         <li><a href="routes">Route Details</a></li>
         <li><a href="calendar">Manage Calendar</a></li>
         <li><a href="updates">Status Updates</a></li>
       </ul>
     </div>
   </nav>
-
-
-  <div class="div-container">
-    
-
-    {% block content %}
-
-    {% endblock %}
-
-  </div>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
-  {% block extend_footer %}
-
-  {% endblock %}
-
-  <script src="{% static 'main.js' %}"></script>
   
+  <!-- Main Body Content -->
+  <div class="container-fluid text-center">
+    <div class="row content">
+      <h4>Bus Route Map</h4>
 
+      <!-- Options Sidebar -->
+      <div class="col-sm-2 sidenav">
+
+        <!-- Route Selection -->
+        <h4>Select Route:</h4>
+        <select class="form-select" aria-label="routeSelectMap">
+          <option selected>All Routes</option>
+          <option value="Reveile 12">Reveile 12</option>
+          <option value="Old Army 15">Old Army 15</option>
+          <option value="Excel 22">Excel 22</option>
+        </select>
+
+        <!-- Date Input -->
+        <h4>Select Date:</h4>
+
+        <!-- Location Inputs -->
+        <div class="form-group">
+          <label for="start">Start Address:</label>
+          <input type="text" class="form-control" id="start">
+        </div>
+        <div class="form-group">
+          <label for="end">End Address:</label>
+          <input type="text" class="form-control" id="end">
+        </div>
+        
+        <!-- Confirm Input -->
+        <button label="mapNavigate">Navigate</button>
+
+      </div>
+
+      <!-- Map Area -->
+      <div class="col-sm-10 text-left" id="map"></div>
+      <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxmWtpfIsyoqHltnUwqevXPRydi6nlvYk&callback=initMap">
+      </script>
+
+    </div>
+  </div>
 </body>
 </html>

@@ -1,20 +1,16 @@
 from django.shortcuts import render, redirect, reverse
 from django.conf import settings
-
 from Main.mixins import Directions
-
 
 def home(request):
 
 	context = {
-	"MAP_KEY": settings.MAP_KEY,
-	"MAP_URL": "https://maps.googleapis.com/maps/api/js?key=" + settings.MAP_KEY + "&callback=initMap",
-	"base_country": settings.BASE_COUNTRY}
-	return render(request, 'main/mapHome.html', context)
+		"MAP_KEY": settings.MAP_KEY,
+		"MAP_URL": "https://maps.googleapis.com/maps/api/js?key=" + settings.MAP_KEY + "&callback=initMap",
+		"base_country": settings.BASE_COUNTRY,
+	}
 
-	
-	
-    
+	return render(request, 'main/mapHome.html', context)
 
 def schedule(request):
 
@@ -27,8 +23,6 @@ def schedule(request):
 	lat_d = request.GET.get("lat_d", None)
 	long_d = request.GET.get("long_d", None)
 
-
-	
 	if lat_a and lat_b and lat_c and lat_d:
 		directions = Directions(
 			lat_a= lat_a,
@@ -40,31 +34,29 @@ def schedule(request):
 			lat_d = lat_d,
 			long_d=long_d
 			)
-	
-    
 
 	context = {
-	"MAP_KEY": settings.MAP_KEY,
-	"base_country": settings.BASE_COUNTRY,
-	"lat_a": lat_a,
-	"long_a": long_a,
-	"lat_b": lat_b,
-	"long_b": long_b,
-	"lat_c": lat_c,
-	"long_c": long_c,
-	"lat_d": lat_d,
-	"long_d": long_d,
-	"origin": f'{lat_a}, {long_a}',
-	"destination": f'{lat_b}, {long_b}',
-	"directions": directions,
-
+		"MAP_KEY": settings.MAP_KEY,
+		"base_country": settings.BASE_COUNTRY,
+		"lat_a": lat_a,
+		"long_a": long_a,
+		"lat_b": lat_b,
+		"long_b": long_b,
+		"lat_c": lat_c,
+		"long_c": long_c,
+		"lat_d": lat_d,
+		"long_d": long_d,
+		"origin": f'{lat_a}, {long_a}',
+		"destination": f'{lat_b}, {long_b}',
+		"directions": directions,
 	}
 	
 	return render(request, 'main/schedule.html', context)
 
-
-
 def stops(request):
+	context = {
+		"BUS_API_TEST": 'https://transport.tamu.edu/BusRoutesFeed/api/Route/' + '12' + '/TimeTable/' + '2022-04-16',
+	}
 	return render(request, 'main/stops.html')
 
 def twitter(request):

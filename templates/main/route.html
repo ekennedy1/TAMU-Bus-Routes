@@ -29,10 +29,11 @@
    <input type="hidden" class="geo" id="id-long-a" value="-96.33922012248537">
    <input type="hidden" class="geo" id="id-lat-b" value="30.6145540616679">
    <input type="hidden" class="geo" id="id-long-b" value="-96.33922012248537">
-   <input type="hidden" class="geo" id="id-lat-c" value="30.5824722">
-   <input type="hidden" class="geo" id="id-long-c" value="-96.32821030000001">
-   <input type="hidden" class="geo" id="id-lat-d" value="30.5940918">
-   <input type="hidden" class="geo" id="id-long-d" value="-96.32802819999999">
+   <input type="hidden" class="geo" id="id-lat-c" value="30.64088174694052">
+   <input type="hidden" class="geo" id="id-long-c" value="-96.32902107408029">
+   <input type="hidden" class="geo" id="id-lat-d" value="30.64654152635841">
+   <input type="hidden" class="geo" id="id-long-d" value="-96.33347336026617">
+   
 
         <!-- Route Selection -->
         <h4>Select Route:</h4>
@@ -69,10 +70,11 @@
       </div>
 
       <!-- Map Area -->
-      <div class="col-sm-10 text-left" id="map"></div>
+      <div class="col-sm-10 text-left" id="map">
       <script async defer
-        src='{{MAP_URL}}'>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxmWtpfIsyoqHltnUwqevXPRydi6nlvYk&callback=initMap">
       </script>
+      </div>
 
     </div>
   </div>

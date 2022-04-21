@@ -72,7 +72,7 @@
       <!-- Map Area -->
       <div class="col-sm-10 text-left" id="map">
       <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxmWtpfIsyoqHltnUwqevXPRydi6nlvYk&callback=initMap">
+        src='{{MAP_URL}}'>
       </script>
       </div>
 
@@ -89,7 +89,7 @@
 
     <script type="text/javascript">
 
-      var google_api_key = "{{google_api_key|safe}}";
+      var MAP_KEY = "{{MAP_KEY|safe}}";
       var base_country = "{{base_country|safe}}";
 
     </script>

@@ -31,7 +31,7 @@ def Directions(*args, **kwargs):
 		 'origin': origin,
 		 'destination': destination,
 		 'waypoints': waypoints,
-		 "key": settings.GOOGLE_API_KEY
+		 "key": settings.MAP_KEY
 		 })
 
 	directions = result.json()

@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, reverse
 from django.conf import settings
 from Main.mixins import Directions
+import requests
+from . import models
 
 
 def home(request):
@@ -67,7 +69,17 @@ def calendar(request):
 	return render(request, 'main/schedule.html')
 
 def stops(request):
-	return render(request, 'main/stops.html')
+	routes_json = requests.get('https://transport.tamu.edu/BusRoutesFeed/api/Routes').json()
+	routes_names_list = []
+	for i in routes_json:
+		routes_names_list.append(i.get('Name'))
+	context = {
+		"TEST_DICT": requests.get('https://transport.tamu.edu/BusRoutesFeed/api/route/12/stops').json(),
+		"TEST_KEY": requests.get('https://transport.tamu.edu/BusRoutesFeed/api/route/12/stops').json()[0].get('Key'),
+		"ALL_ROUTES": requests.get('https://transport.tamu.edu/BusRoutesFeed/api/Routes').json(),
+		"ROUTE_NAMES": routes_names_list,
+	}
+	return render(request, 'main/stops.html', context)
 
 def twitter(request):
     return render(request, 'main/twitter.html')

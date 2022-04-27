@@ -60,7 +60,43 @@
     </div>
     <div class="col-sm-10 text-left"> 
       <h1>Welcome</h1>
-      <p>Main body</p>
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">Route</th>
+              <th>Name</th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in ALL_ROUTES %}
+            <tr>
+              <th scope="row">{{item.ShortName}}</th>
+              <td>{{item.Name}}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <p>Testing area:</p>
+      <p>{{ROUTE_NAMES}}</p>
+      <ul>
+        {% for item in ROUTE_NAMES %}
+          <li>{{item}}</li>
+        {% endfor %}
+      </ul>
+      <p>separation</p>
+      <ul>
+        {% for item in ALL_ROUTES %}
+          <li>{{item.Name}}</li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
 </div>

@@ -70,14 +70,28 @@ def calendar(request):
 
 def stops(request):
 	routes_json = requests.get('https://transport.tamu.edu/BusRoutesFeed/api/Routes').json()
-	routes_names_list = []
+	routes_list = []
 	for i in routes_json:
-		routes_names_list.append(i.get('Name'))
+		route_details = {}
+		route_details["Number"] = i.get('ShortName')
+		route_details["Name"] = i.get('Name')
+		stops = []
+		stops_json = requests.get('https://transport.tamu.edu/BusRoutesFeed/api/route/' + route_details["Number"] + '/stops').json()
+		for j in stops_json:
+			stop = {}
+			stop["Name"] = j.get('Name')
+			stop["Rank"] = j.get('Rank')
+			stop["Long"] = j.get('Longtitude')
+			stop["Lat"] = j.get('Latitude')
+			stop["Timed"] = j.get('IsTimePoint')
+			stops.append(stop)
+		route_details["Stops"] = stops
+		routes_list.append(route_details)
 	context = {
 		"TEST_DICT": requests.get('https://transport.tamu.edu/BusRoutesFeed/api/route/12/stops').json(),
 		"TEST_KEY": requests.get('https://transport.tamu.edu/BusRoutesFeed/api/route/12/stops').json()[0].get('Key'),
 		"ALL_ROUTES": requests.get('https://transport.tamu.edu/BusRoutesFeed/api/Routes').json(),
-		"ROUTE_NAMES": routes_names_list,
+		"ROUTE_LIST": routes_list,
 	}
 	return render(request, 'main/stops.html', context)
 

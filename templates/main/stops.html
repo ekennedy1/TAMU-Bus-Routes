@@ -66,37 +66,59 @@
             <tr>
               <th scope="col">Route</th>
               <th>Name</th>
-              <th></th>
-              <th></th>
-              <th></th>
             </tr>
           </thead>
           <tbody>
-            {% for item in ALL_ROUTES %}
+            {% for item in ROUTE_LIST %}
             <tr>
-              <th scope="row">{{item.ShortName}}</th>
+              <th scope="row">{{item.Number}}</th>
               <td>{{item.Name}}</td>
-              <td></td>
-              <td></td>
-              <td></td>
+            </tr>
+            <tr>
+              <th></th>
+              <td>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Rank</th>
+                      <th>Stop Name</th>
+                      <th>Longitude</th>
+                      <th>Latitude</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for object in item.Stops %}
+                      <tr>
+                        <th scope="row">{{object.Rank}}</th>
+                        <td>{{object.Name}}</td>
+                        <td>{{object.Long}}</td>
+                        <td>{{object.Lat}}</td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </td>
             </tr>
             {% endfor %}
           </tbody>
         </table>
       </div>
       <p>Testing area:</p>
-      <p>{{ROUTE_NAMES}}</p>
-      <ul>
-        {% for item in ROUTE_NAMES %}
-          <li>{{item}}</li>
+      <!-- <ul>
+        {% for item in ROUTE_LIST %}
+          <li>Route: {{item.Number}} {{item.Name}}</li>
+          <ul>
+          {% for object in item.Stops %}
+            <li>Point {{object.Rank}}</li>
+            <ul>
+              <li>Stop: {{object.Name}}</li>
+              <li>Longitude: {{object.Long}}</li>
+              <li>Latitude: {{object.Lat}}</li>
+            </ul>
+          {% endfor %}
+          </ul>
         {% endfor %}
-      </ul>
-      <p>separation</p>
-      <ul>
-        {% for item in ALL_ROUTES %}
-          <li>{{item.Name}}</li>
-        {% endfor %}
-      </ul>
+      </ul> -->
     </div>
   </div>
 </div>

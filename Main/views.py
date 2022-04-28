@@ -24,8 +24,10 @@ def map(request):
 	long_c = request.GET.get("long_c", None)
 	lat_d = request.GET.get("lat_d", None)
 	long_d = request.GET.get("long_d", None)
+	lat_e = request.GET.get("lat_e", None)
+	long_e = request.GET.get("long_e", None)
 
-	if lat_a and lat_b and lat_c and lat_d:
+	if lat_a and lat_b and lat_c and lat_d and lat_e:
 		directions = Directions(
 			lat_a= lat_a,
 			long_a=long_a,
@@ -34,7 +36,9 @@ def map(request):
 			lat_c= lat_c,
 			long_c=long_c,
 			lat_d = lat_d,
-			long_d=long_d
+			long_d =long_d,
+			lat_e = lat_e,
+			long_e= long_e
 			)
 	else:
 		return redirect(reverse('main:route'))
@@ -50,6 +54,8 @@ def map(request):
 		"long_c": long_c,
 		"lat_d": lat_d,
 		"long_d": long_d,
+		"lat_e": lat_e,
+		"long_e": long_e,
 		"origin": f'{lat_a}, {long_a}',
 		"destination": f'{lat_b}, {long_b}',
 		"directions": directions,

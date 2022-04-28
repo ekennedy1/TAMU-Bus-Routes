@@ -22,6 +22,8 @@ const waypts = [
         {location: {lat: lat_c, lng: long_c},
         stopover: true},
         {location: {lat: lat_d, lng: long_d},
+        stopover: true},
+        {location: {lat: lat_e, lng: long_e},
         stopover: true}
         ];
 

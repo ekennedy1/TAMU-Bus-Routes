@@ -31,6 +31,8 @@ function CalcRoute(){
           long_c: $('#id-long-c').val(),
           lat_d: $('#id-lat-d').val(),
           long_d: $('#id-long-d').val(),
+          lat_e: $('#id-lat-e').val(),
+          long_e: $('#id-long-e').val(),
       };
 
       var esc = encodeURIComponent;

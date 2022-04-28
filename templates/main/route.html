@@ -33,6 +33,8 @@
    <input type="hidden" class="geo" id="id-long-c" value="-96.32902107408029">
    <input type="hidden" class="geo" id="id-lat-d" value="30.64654152635841">
    <input type="hidden" class="geo" id="id-long-d" value="-96.33347336026617">
+   <input type="hidden" class="geo" id="id-lat-e" value="35.646541526">
+   <input type="hidden" class="geo" id="id-long-e" value="-93.3334726617">
    
 
         <!-- Route Selection -->
@@ -42,6 +44,23 @@
           <option selected id="myBtn" >Reveile 12</option>
         </select>
 
+        <select id="list">
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+          <option value="4">Four</option>
+        </select>
+        <p>
+          Your value <span id="changed"></span>
+        </p>
+
+        <script>
+        var changedText = document.getElementById('changed');
+        function listQ(){
+        changedText.textContent = this.value;
+        }
+        document.getElementById("list").onchange = listQ;
+        </script>
         <script>
           const element = document.getElementById("myBtn");
           element.addEventListener("click", myFunction);

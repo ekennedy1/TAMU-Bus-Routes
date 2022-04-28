@@ -20,10 +20,12 @@ def Directions(*args, **kwargs):
 	long_c = kwargs.get("long_c")
 	lat_d = kwargs.get("lat_d")
 	long_d = kwargs.get("long_d")
+	lat_e = kwargs.get("lat_e")
+	long_e = kwargs.get("long_e")
 
 	origin = f'{lat_a},{long_a}'
 	destination = f'{lat_b},{long_b}'
-	waypoints = f'{lat_c},{long_c}|{lat_d},{long_d}'
+	waypoints = f'{lat_c},{long_c}|{lat_d},{long_d}|{lat_e},{long_e}'
 
 	result = requests.get(
 		'https://maps.googleapis.com/maps/api/directions/json?',

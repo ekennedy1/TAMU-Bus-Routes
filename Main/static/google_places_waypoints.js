@@ -33,6 +33,12 @@ function CalcRoute(){
           long_d: $('#id-long-d').val(),
           lat_e: $('#id-lat-e').val(),
           long_e: $('#id-long-e').val(),
+          lat_f: $('#id-lat-f').val(),
+          long_f: $('#id-long-f').val(),
+          lat_g: $('#id-lat-g').val(),
+          long_g: $('#id-long-g').val(),
+          lat_h: $('#id-lat-h').val(),
+          long_h: $('#id-long-h').val(),
       };
 
       var esc = encodeURIComponent;

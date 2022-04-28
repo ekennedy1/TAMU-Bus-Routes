@@ -22,10 +22,16 @@ def Directions(*args, **kwargs):
 	long_d = kwargs.get("long_d")
 	lat_e = kwargs.get("lat_e")
 	long_e = kwargs.get("long_e")
+	lat_f = kwargs.get("lat_f")
+	long_f = kwargs.get("long_f")
+	lat_g = kwargs.get("lat_g")
+	long_g = kwargs.get("long_g")
+	lat_h = kwargs.get("lat_h")
+	long_h = kwargs.get("long_h")
 
 	origin = f'{lat_a},{long_a}'
 	destination = f'{lat_b},{long_b}'
-	waypoints = f'{lat_c},{long_c}|{lat_d},{long_d}|{lat_e},{long_e}'
+	waypoints = f'{lat_c},{long_c}|{lat_d},{long_d}|{lat_e},{long_e}|{lat_f},{long_f}|{lat_g},{long_g}|{lat_h},{long_h}'
 
 	result = requests.get(
 		'https://maps.googleapis.com/maps/api/directions/json?',

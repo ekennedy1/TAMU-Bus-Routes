@@ -30,7 +30,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         origin: origin,
         destination: destination,
         waypoints: waypts,
-        optimizeWaypoints: true,
+        optimizeWaypoints: false,
         travelMode: google.maps.TravelMode.DRIVING,
     }, function(response, status) {
       if (status === 'OK') {

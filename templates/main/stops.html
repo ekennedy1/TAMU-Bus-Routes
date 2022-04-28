@@ -66,6 +66,7 @@
             <tr>
               <th scope="col">Route</th>
               <th>Name</th>
+              <th>Area</th>
             </tr>
           </thead>
           <tbody>
@@ -73,15 +74,17 @@
             <tr>
               <th scope="row">{{item.Number}}</th>
               <td>{{item.Name}}</td>
+              <td>{{item.Group}}</td>
             </tr>
             <tr>
               <th></th>
-              <td>
+              <td colspan="2">
                 <table class="table">
                   <thead>
                     <tr>
                       <th scope="col">Stop</th>
                       <th>Name</th>
+                      <th>Description</th>
                       <th>Longitude</th>
                       <th>Latitude</th>
                       <th>Timed</th>
@@ -92,6 +95,7 @@
                       <tr>
                         <th scope="row">{{object.Number}}</th>
                         <td>{{object.Name}}</td>
+                        <td>{{object.Desc}}</td>
                         <td>{{object.Long}}</td>
                         <td>{{object.Lat}}</td>
                         <td>{{object.Timed}}</td>
@@ -100,7 +104,7 @@
                         <tr>
                           <td></td>
                           <td>Times:</td>
-                          <td colspan="3">{{object.Times}}</td>
+                          <td colspan="4">{{object.Times}}</td>
                         </tr>
                       {% endif %}
                     {% endfor %}

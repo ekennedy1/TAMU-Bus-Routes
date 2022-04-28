@@ -75,6 +75,7 @@ def stops(request):
 		route_details = {}
 		route_details["Number"] = i.get('ShortName')
 		route_details["Name"] = i.get('Name')
+		route_details["Group"] = i.get('Group').get('Name')
 		stops = []
 		stops_json = requests.get('https://transport.tamu.edu/BusRoutesFeed/api/route/' + route_details["Number"] + '/stops').json()
 		times_json = requests.get('https://transport.tamu.edu/BusRoutesFeed/api/Route/' + route_details["Number"] + '/TimeTable').json()
@@ -82,9 +83,9 @@ def stops(request):
 		time_stop_num = 1
 		for j in stops_json:
 			stop = {}
-			stop["Name"] = j.get('Name')
-			stop["Rank"] = j.get('Rank')
 			stop["Number"] = stop_num
+			stop["Name"] = j.get('Name')
+			stop["Desc"] = "This is where the description will go once it is manually added to the database."
 			stop["Long"] = j.get('Longtitude')
 			stop["Lat"] = j.get('Latitude')
 			stop["Timed"] = j.get('Stop').get('IsTimePoint')

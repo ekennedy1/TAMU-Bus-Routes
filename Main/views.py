@@ -77,14 +77,33 @@ def stops(request):
 		route_details["Name"] = i.get('Name')
 		stops = []
 		stops_json = requests.get('https://transport.tamu.edu/BusRoutesFeed/api/route/' + route_details["Number"] + '/stops').json()
+		times_json = requests.get('https://transport.tamu.edu/BusRoutesFeed/api/Route/' + route_details["Number"] + '/TimeTable').json()
+		stop_num = 1
+		time_stop_num = 1
 		for j in stops_json:
 			stop = {}
 			stop["Name"] = j.get('Name')
 			stop["Rank"] = j.get('Rank')
+			stop["Number"] = stop_num
 			stop["Long"] = j.get('Longtitude')
 			stop["Lat"] = j.get('Latitude')
-			stop["Timed"] = j.get('IsTimePoint')
+			stop["Timed"] = j.get('Stop').get('IsTimePoint')
+			times = ""
+			for k in times_json:
+				time_num = 1
+				for key in k:
+					if time_num == time_stop_num:
+						if k[key] != None:
+							if (times == ""):
+								times = k[key]
+							else:
+								times = times + ", " + k[key]
+					time_num = time_num + 1
+			stop["Times"] = times
 			stops.append(stop)
+			stop_num = stop_num + 1
+			if stop["Timed"]:
+				time_stop_num = time_stop_num + 1
 		route_details["Stops"] = stops
 		routes_list.append(route_details)
 	context = {

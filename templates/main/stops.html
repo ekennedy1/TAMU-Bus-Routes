@@ -80,20 +80,29 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">Rank</th>
-                      <th>Stop Name</th>
+                      <th scope="col">Stop</th>
+                      <th>Name</th>
                       <th>Longitude</th>
                       <th>Latitude</th>
+                      <th>Timed</th>
                     </tr>
                   </thead>
                   <tbody>
                     {% for object in item.Stops %}
                       <tr>
-                        <th scope="row">{{object.Rank}}</th>
+                        <th scope="row">{{object.Number}}</th>
                         <td>{{object.Name}}</td>
                         <td>{{object.Long}}</td>
                         <td>{{object.Lat}}</td>
+                        <td>{{object.Timed}}</td>
                       </tr>
+                      {% if object.Timed %}
+                        <tr>
+                          <td></td>
+                          <td>Times:</td>
+                          <td colspan="3">{{object.Times}}</td>
+                        </tr>
+                      {% endif %}
                     {% endfor %}
                   </tbody>
                 </table>
@@ -103,22 +112,6 @@
           </tbody>
         </table>
       </div>
-      <p>Testing area:</p>
-      <!-- <ul>
-        {% for item in ROUTE_LIST %}
-          <li>Route: {{item.Number}} {{item.Name}}</li>
-          <ul>
-          {% for object in item.Stops %}
-            <li>Point {{object.Rank}}</li>
-            <ul>
-              <li>Stop: {{object.Name}}</li>
-              <li>Longitude: {{object.Long}}</li>
-              <li>Latitude: {{object.Lat}}</li>
-            </ul>
-          {% endfor %}
-          </ul>
-        {% endfor %}
-      </ul> -->
     </div>
   </div>
 </div>

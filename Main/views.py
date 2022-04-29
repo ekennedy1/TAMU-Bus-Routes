@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.conf import settings
 from Main.mixins import Directions
 import requests
-from .models import Routes, Stops, Times
+from .models import Routes, Stops
 from django.http import HttpResponse
 
 
@@ -69,11 +69,18 @@ def route(request):
 def calendar(request):
 	return render(request, 'main/schedule.html')
 
+def clear_database(request):
+	# delete all database data
+	Routes.objects.all().delete()
+	Stops.objects.all().delete()
+	# return HTTPResponse
+	print("Deleted all routes, stops, and times.")
+	return HttpResponse({}, content_type="application/json")
+
 def refresh_database(request):
 	# delete all database data
 	Routes.objects.all().delete()
 	Stops.objects.all().delete()
-	Times.objects.all().delete()
 	# data = get data from the api
 	routes_json = requests.get('https://transport.tamu.edu/BusRoutesFeed/api/Routes').json()
 	# data [1, 2]
@@ -104,8 +111,31 @@ def refresh_database(request):
 	stop_id = 1
 	for r in Routes.objects.all():
 		stops_json = requests.get('https://transport.tamu.edu/BusRoutesFeed/api/route/' + r.routeNumber + '/stops').json()
+		times_json = requests.get('https://transport.tamu.edu/BusRoutesFeed/api/Route/' + r.routeNumber + '/TimeTable').json()
 		stop_num = 1
+		time_stop_num = 1
 		for i in stops_json:
+			times_text = ""
+			times_list = []
+			for j in times_json:
+				time_num = 1
+				for key in j:
+					if time_num == time_stop_num:
+						if j[key] != None:
+							# time calculation from "HH:MM AM/PM" to "HH:MM" (24-hour)
+							if j[key][-2:] == "AM":
+								times_list.append(j[key][:5])
+							elif j[key][-2:] == "PM":
+								if j[key][:2] == "12":
+									times_list.append(j[key][:5])
+								else:
+									times_list.append(str(int(j[key][:2]) + 12) + j[key][2:5])
+					time_num = time_num + 1
+			for t in times_list:
+				if times_text == "":
+					times_text = t
+				else:
+					times_text = times_text + " " + t
 			stops_list.append(Stops(
 				stopID = stop_id,
 				stopNum = stop_num,
@@ -114,51 +144,17 @@ def refresh_database(request):
 				route = r,
 				longitude = i.get('Longtitude'),
 				latitude = i.get('Latitude'),
-				timed = i.get('Stop').get('IsTimePoint')
+				timed = i.get('Stop').get('IsTimePoint'),
+				times = times_text
 			))
 			stop_id = stop_id + 1
 			stop_num = stop_num + 1
+			if i.get('Stop').get('IsTimePoint'):
+				time_stop_num = time_stop_num + 1
 	Stops.objects.bulk_create(stops_list)
 
-	times_list = []
-	time_id = 1
-	for r in Routes.objects.all():
-		times_json = requests.get('https://transport.tamu.edu/BusRoutesFeed/api/Route/' + r.routeNumber + '/TimeTable').json()
-		time_stop_num = 1
-		for s in Stops.objects.filter(route=r):
-			for i in times_json:
-				time_num = 1
-				for key in i:
-					if time_num == time_stop_num:
-						if i[key] != None:
-							# time calculation from "HH:MM AM/PM" to "HH:MM" (24-hour)
-							if i[key][-2:] == "AM":
-								time_val = i[key][:5]
-								times_list.append(Times(
-									timeID = time_id,
-									stop = s,
-									time = time_val
-								))
-								time_id = time_id + 1
-							elif i[key][-2:] == "PM":
-								time_val = ""
-								if i[key][:2] == "12":
-									time_val = i[key][:5]
-								else:
-									time_val = str(int(i[key][:2]) + 12) + i[key][2:5]
-								times_list.append(Times(
-									timeID = time_id,
-									stop = s,
-									time = time_val
-								))
-								time_id = time_id + 1
-					time_num = time_num + 1
-			if s.timed:
-				time_stop_num = time_stop_num + 1
-	Times.objects.bulk_create(times_list)
-
 	# return HTTPResponse
-	print("Recreated all routes.")
+	print("Recreated all routes, stops, and times.")
 	return HttpResponse({}, content_type="application/json")
 
 def stops(request):
@@ -177,12 +173,14 @@ def stops(request):
 			stop["Long"] = s.longitude
 			stop["Lat"] = s.latitude
 			stop["Timed"] = s.timed
+			times = s.times
+			time_list_temp = times.split()
 			times = ""
-			for t in Times.objects.filter(stop=s):
+			for x in time_list_temp:
 				if times == "":
-					times = str(t.time)
+					times = x
 				else:
-					times = times + ", " + str(t.time)
+					times = times + ", " + x
 			stop["Times"] = times
 			stops.append(stop)
 		route_details["Stops"] = stops

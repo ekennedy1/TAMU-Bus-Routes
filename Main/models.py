@@ -26,12 +26,6 @@ class Stops(models.Model):
     latitude = models.FloatField() # still need to fix
     stopNum = models.PositiveIntegerField()
     timed = models.BooleanField(default=0)
-    def __str__ (self):
-        return self.item
-
-class Times(models.Model):
-    timeID = models.PositiveIntegerField(primary_key=True)
-    stop = models.ForeignKey(Stops, on_delete=models.CASCADE)
-    time = models.TimeField()
+    times = models.TextField()
     def __str__ (self):
         return self.item

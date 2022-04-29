@@ -10,6 +10,7 @@ urlpatterns = [
     path('calendar', views.calendar),
     path('routes', views.stops),
     path('updates', views.twitter),
-    path('refresh_database', views.refresh_database)
+    path('refresh_database', views.refresh_database),
+    path('clear_database', views.clear_database)
 ]
 

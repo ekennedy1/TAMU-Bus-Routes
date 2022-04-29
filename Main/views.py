@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect, reverse
 from django.conf import settings
 from Main.mixins import Directions
 import requests
-from . import models
+from .models import Routes, Stops, Times
+from django.http import HttpResponse
 
 
 def home(request):
@@ -68,49 +69,125 @@ def route(request):
 def calendar(request):
 	return render(request, 'main/schedule.html')
 
-def stops(request):
+def refresh_database(request):
+	# delete all database data
+	Routes.objects.all().delete()
+	Stops.objects.all().delete()
+	Times.objects.all().delete()
+	# data = get data from the api
 	routes_json = requests.get('https://transport.tamu.edu/BusRoutesFeed/api/Routes').json()
+	# data [1, 2]
+	# stop_data = []
 	routes_list = []
+	route_id = 1
+	# for x in data:
 	for i in routes_json:
-		route_details = {}
-		route_details["Number"] = i.get('ShortName')
-		route_details["Name"] = i.get('Name')
-		route_details["Group"] = i.get('Group').get('Name')
-		stops = []
-		stops_json = requests.get('https://transport.tamu.edu/BusRoutesFeed/api/route/' + route_details["Number"] + '/stops').json()
-		times_json = requests.get('https://transport.tamu.edu/BusRoutesFeed/api/Route/' + route_details["Number"] + '/TimeTable').json()
+		# creating all objects as a list:
+	    # stop_data.append(Stops(
+	        # stopName=x["stopName"],
+	    # ))
+		routes_list.append(Routes(
+			routeID = route_id,
+			routeName = i.get('Name'),
+			routeNumber = i.get('ShortName'),
+			area = i.get('Group').get('Name')
+		))
+		route_id = route_id + 1
+		# what creating a single object would be like:
+		# Stops.objects.create(
+		    # stopName=x["stopName"],
+		# )
+	# Stops.objects.bulk_create(stop_data)
+	Routes.objects.bulk_create(routes_list)
+
+	stops_list = []
+	stop_id = 1
+	for r in Routes.objects.all():
+		stops_json = requests.get('https://transport.tamu.edu/BusRoutesFeed/api/route/' + r.routeNumber + '/stops').json()
 		stop_num = 1
+		for i in stops_json:
+			stops_list.append(Stops(
+				stopID = stop_id,
+				stopNum = stop_num,
+				stopName = i.get('Name'),
+				stopDesc = "This is where the description will go once it is manually added to the database.",
+				route = r,
+				longitude = i.get('Longtitude'),
+				latitude = i.get('Latitude'),
+				timed = i.get('Stop').get('IsTimePoint')
+			))
+			stop_id = stop_id + 1
+			stop_num = stop_num + 1
+	Stops.objects.bulk_create(stops_list)
+
+	times_list = []
+	time_id = 1
+	for r in Routes.objects.all():
+		times_json = requests.get('https://transport.tamu.edu/BusRoutesFeed/api/Route/' + r.routeNumber + '/TimeTable').json()
 		time_stop_num = 1
-		for j in stops_json:
-			stop = {}
-			stop["Number"] = stop_num
-			stop["Name"] = j.get('Name')
-			stop["Desc"] = "This is where the description will go once it is manually added to the database."
-			stop["Long"] = j.get('Longtitude')
-			stop["Lat"] = j.get('Latitude')
-			stop["Timed"] = j.get('Stop').get('IsTimePoint')
-			times = ""
-			for k in times_json:
+		for s in Stops.objects.filter(route=r):
+			for i in times_json:
 				time_num = 1
-				for key in k:
+				for key in i:
 					if time_num == time_stop_num:
-						if k[key] != None:
-							if (times == ""):
-								times = k[key]
-							else:
-								times = times + ", " + k[key]
+						if i[key] != None:
+							# time calculation from "HH:MM AM/PM" to "HH:MM" (24-hour)
+							if i[key][-2:] == "AM":
+								time_val = i[key][:5]
+								times_list.append(Times(
+									timeID = time_id,
+									stop = s,
+									time = time_val
+								))
+								time_id = time_id + 1
+							elif i[key][-2:] == "PM":
+								time_val = ""
+								if i[key][:2] == "12":
+									time_val = i[key][:5]
+								else:
+									time_val = str(int(i[key][:2]) + 12) + i[key][2:5]
+								times_list.append(Times(
+									timeID = time_id,
+									stop = s,
+									time = time_val
+								))
+								time_id = time_id + 1
 					time_num = time_num + 1
+			if s.timed:
+				time_stop_num = time_stop_num + 1
+	Times.objects.bulk_create(times_list)
+
+	# return HTTPResponse
+	print("Recreated all routes.")
+	return HttpResponse({}, content_type="application/json")
+
+def stops(request):
+	routes_list = []
+	for r in Routes.objects.all():
+		route_details = {}
+		route_details["Number"] = r.routeNumber
+		route_details["Name"] = r.routeName
+		route_details["Area"] = r.area
+		stops = []
+		for s in Stops.objects.filter(route=r):
+			stop = {}
+			stop["Number"] = s.stopNum
+			stop["Name"] = s.stopName
+			stop["Desc"] = s.stopDesc
+			stop["Long"] = s.longitude
+			stop["Lat"] = s.latitude
+			stop["Timed"] = s.timed
+			times = ""
+			for t in Times.objects.filter(stop=s):
+				if times == "":
+					times = str(t.time)
+				else:
+					times = times + ", " + str(t.time)
 			stop["Times"] = times
 			stops.append(stop)
-			stop_num = stop_num + 1
-			if stop["Timed"]:
-				time_stop_num = time_stop_num + 1
 		route_details["Stops"] = stops
 		routes_list.append(route_details)
 	context = {
-		"TEST_DICT": requests.get('https://transport.tamu.edu/BusRoutesFeed/api/route/12/stops').json(),
-		"TEST_KEY": requests.get('https://transport.tamu.edu/BusRoutesFeed/api/route/12/stops').json()[0].get('Key'),
-		"ALL_ROUTES": requests.get('https://transport.tamu.edu/BusRoutesFeed/api/Routes').json(),
 		"ROUTE_LIST": routes_list,
 	}
 	return render(request, 'main/stops.html', context)

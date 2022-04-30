@@ -21,76 +21,174 @@
       <!-- Options Sidebar -->
       <div class="col-sm-2 sidenav">
 
-        <button id="myBtn">See Route</button>
 
 
 
-   <input type="hidden" class="geo" id="id-lat-a" value="30.6145540616679">
-   <input type="hidden" class="geo" id="id-long-a" value="-96.33922012248537">
-   <input type="hidden" class="geo" id="id-lat-b" value="30.6145540616679">
-   <input type="hidden" class="geo" id="id-long-b" value="-96.33922012248537">
-   <input type="hidden" class="geo" id="id-lat-c" value="30.64088174694052">
-   <input type="hidden" class="geo" id="id-long-c" value="-96.32902107408029">
-   <input type="hidden" class="geo" id="id-lat-d" value="30.64654152635841">
-   <input type="hidden" class="geo" id="id-long-d" value="-96.33347336026617">
-   <input type="hidden" class="geo" id="id-lat-e" value="30.656854002458704">
-   <input type="hidden" class="geo" id="id-long-e" value="-96.34584687508581">
-   <input type="hidden" class="geo" id="id-lat-f" value="30.663241399054574">
-   <input type="hidden" class="geo" id="id-long-f" value="-96.351956412979">
-   <input type="hidden" class="geo" id="id-lat-g" value="30.656854002458704">
-   <input type="hidden" class="geo" id="id-long-g" value="-96.34584687508581">
-   <input type="hidden" class="geo" id="id-lat-h" value="30.64654152635841">
-   <input type="hidden" class="geo" id="id-long-h" value="-96.33347336026617">
+   <input type="hidden" class="geo" id="id-lat-a" value="">
+   <input type="hidden" class="geo" id="id-long-a" value="">
+   <input type="hidden" class="geo" id="id-lat-b" value="">
+   <input type="hidden" class="geo" id="id-long-b" value="">
+   <input type="hidden" class="geo" id="id-lat-c" value="">
+   <input type="hidden" class="geo" id="id-long-c" value="">
+   <input type="hidden" class="geo" id="id-lat-d" value="">
+   <input type="hidden" class="geo" id="id-long-d" value="">
+   <input type="hidden" class="geo" id="id-lat-e" value="">
+   <input type="hidden" class="geo" id="id-long-e" value="">
+   <input type="hidden" class="geo" id="id-lat-f" value="">
+   <input type="hidden" class="geo" id="id-long-f" value="">
+   <input type="hidden" class="geo" id="id-lat-g" value="">
+   <input type="hidden" class="geo" id="id-long-g" value="">
+   <input type="hidden" class="geo" id="id-lat-h" value="">
+   <input type="hidden" class="geo" id="id-long-h" value="">
    
 
         <!-- Route Selection -->
-        <h4>Select Route:</h4>
-        <select class="form-select" aria-label="routeSelectMap">
-          <option >All Routes</option>
-          <option selected id="myBtn" >Reveile 12</option>
+        <h4>Off Campus Routes:</h4>
+        <select id="Off Campus" class="form-select" onchange="offCampusRoutes()" aria-label="routeSelectMap">
+          <option selected>All Off Campus Routes</option>
+          <option value="12">Reveile 12</option>
+          <option value="15">Old Army 15</option>
         </select>
 
-        <select id="list">
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-          <option value="4">Four</option>
+        <h4>On Campus Routes:</h4>
+        <select id="On Campus" class="form-select" onchange="onCampusRoutes()" aria-label="routeSelectMap">
+          <option selected>All On Campus Routes</option>
+          <option value="1">Bonfire 01</option>
         </select>
-        <p>
-          Your value <span id="changed"></span>
-        </p>
 
         <script>
-        var changedText = document.getElementById('changed');
-        function listQ(){
-        changedText.textContent = this.value;
-        }
-        document.getElementById("list").onchange = listQ;
-        </script>
-        <script>
-          const element = document.getElementById("myBtn");
-          element.addEventListener("click", myFunction);
-        
-          function myFunction() {
+          function onCampusRoutes() {
+            var RouteID = document.getElementById('On Campus');
+            if(RouteID.value == 1){
+            var Lata = document.getElementById("id-lat-a");
+            Lata.value = "30.6145540616679";
             CalcRoute();
+            }
           }
+
+          function offCampusRoutes() {
+            var RouteID = document.getElementById('Off Campus');
+            switch(RouteID.value){
+              case "12":
+                var Lata = document.getElementById("id-lat-a");
+                Lata.value = "30.6145540616679";
+                var Longa = document.getElementById("id-long-a");
+                Longa.value = "-96.33922012248537";
+                var Latb = document.getElementById("id-lat-b");
+                Latb.value = "30.6145540616679";
+                var Longb = document.getElementById("id-long-b");
+                Longb.value = "-96.33922012248537";
+                var Latc = document.getElementById("id-lat-c");
+                Latc.value = "30.64088174694052";
+                var Longc = document.getElementById("id-long-c");
+                Longc.value = "-96.32902107408029";
+                var Latd = document.getElementById("id-lat-d");
+                Latd.value = "30.64654152635841";
+                var Longd = document.getElementById("id-long-d");
+                Longd.value = "-96.33347336026617";
+                var Late = document.getElementById("id-lat-e");
+                Late.value = "30.656854002458704";
+                var Longe = document.getElementById("id-long-e");
+                Longe.value = "-96.34584687508581";
+                var Latf = document.getElementById("id-lat-f");
+                Latf.value = "30.663241399054574";
+                var Longf = document.getElementById("id-long-f");
+                Longf.value = "-96.351956412979";
+                var Latg = document.getElementById("id-lat-g");
+                Latg.value = "30.656854002458704";
+                var Longg = document.getElementById("id-long-g");
+                Longg.value = "-96.34584687508581";
+                var Lath = document.getElementById("id-lat-h");
+                Lath.value = "30.64654152635841";
+                var Longh = document.getElementById("id-long-h");
+                Longh.value = "-96.33347336026617";
+                CalcRoute();
+                break;
+              case "15":
+                var Lata = document.getElementById("id-lat-a");
+                Lata.value = "30.613498156032207";
+                var Longa = document.getElementById("id-long-a");
+                Longa.value = "-96.34151172749681";
+                var Latb = document.getElementById("id-lat-b");
+                Latb.value = "30.613498156032207";
+                var Longb = document.getElementById("id-long-b");
+                Longb.value = "-96.34151172749681";
+                var Latc = document.getElementById("id-lat-c");
+                Latc.value = "30.616431673978102";
+                var Longc = document.getElementById("id-long-c");
+                Longc.value = "-96.34306745142516";
+                var Latd = document.getElementById("id-lat-d");
+                Latd.value = "30.622037729981514";
+                var Longd = document.getElementById("id-long-d");
+                Longd.value = "-96.34939574742472";
+                var Late = document.getElementById("id-lat-e");
+                Late.value = "30.624866399908782";
+                var Longe = document.getElementById("id-long-e");
+                Longe.value = "-96.35253408794368";
+                var Latf = document.getElementById("id-lat-f");
+                Latf.value = "30.62610215744403";
+                var Longf = document.getElementById("id-long-f");
+                Longf.value = "-96.35584063617631";
+                var Latg = document.getElementById("id-lat-g");
+                Latg.value = "30.6273483216913";
+                var Longg = document.getElementById("id-long-g");
+                Longg.value = "-96.35881437578604";
+                var Lath = document.getElementById("id-lat-h");
+                Lath.value = "30.6284842074362";
+                var Longh = document.getElementById("id-long-h");
+                Longh.value = "-96.35988406276071";
+                CalcRoute();
+                break;
+              default:
+                break;
+            }
+            
+        }
+
         </script>
 
-        <!-- Date Input -->
-        <h4>Select Date:</h4>
+        <br></br>
 
         <!-- Location Inputs -->
         <div class="form-group">
-          <label for="start">Start Address:</label>
-          <input type="text" class="form-control" id="start">
+          <label for="start">Start Address</label>
+          <input type="text"  class="form-control" placeholder="*Start typing address" id="id-google-address-a" name="google_address_a">
         </div>
         <div class="form-group">
-          <label for="end">End Address:</label>
-          <input type="text" class="form-control" id="end">
+          <label for="id-google-address-b">Destination Address</label>
+          <input type="text" class="form-control" placeholder="*Start typing address" id="id-google-address-b" name="google_address_b">
         </div>
         
         <!-- Confirm Input -->
-        <button label="mapNavigate">Navigate</button>
+        <button id="myBtn" label="mapNavigate">Navigate</button>
+
+        <p id="demo"></p>
+
+        <script>
+          const element = document.getElementById("myBtn");
+          element.addEventListener("click", deBug);
+
+          
+          function deBug() {
+            var geocoder = new google.maps.Geocoder();
+            var address = document.getElementById('id-google-address-a').value;
+
+            geocoder.geocode({
+              'address': address
+            }, function(results, status) {
+
+            if (status == google.maps.GeocoderStatus.OK) {
+              var latitude = results[0].geometry.location.lat();
+              var longitude = results[0].geometry.location.lng();
+            }
+            });
+            document.getElementById("demo").innerHTML = latitude;
+            
+              
+          }
+        </script>
+
+      
 
       </div>
 

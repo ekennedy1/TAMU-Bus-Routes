@@ -20,12 +20,127 @@
     <!-- Options Sidebar -->
     <div class="col-sm-2 sidenav">
 
+      <input type="hidden" class="geo" id="id-lat-a" value="">
+      <input type="hidden" class="geo" id="id-long-a" value="">
+      <input type="hidden" class="geo" id="id-lat-b" value="">
+      <input type="hidden" class="geo" id="id-long-b" value="">
+      <input type="hidden" class="geo" id="id-lat-c" value="">
+      <input type="hidden" class="geo" id="id-long-c" value="">
+      <input type="hidden" class="geo" id="id-lat-d" value="">
+      <input type="hidden" class="geo" id="id-long-d" value="">
+      <input type="hidden" class="geo" id="id-lat-e" value="">
+      <input type="hidden" class="geo" id="id-long-e" value="">
+      <input type="hidden" class="geo" id="id-lat-f" value="">
+      <input type="hidden" class="geo" id="id-long-f" value="">
+      <input type="hidden" class="geo" id="id-lat-g" value="">
+      <input type="hidden" class="geo" id="id-long-g" value="">
+      <input type="hidden" class="geo" id="id-lat-h" value="">
+      <input type="hidden" class="geo" id="id-long-h" value="">
+
       <!-- Route Selection -->
-      <h4>Select Route:</h4>
-      <select class="form-select" aria-label="routeSelectMap">
-        <option selected>All Routes</option>
-        <option value="Reveile 12">Reveile 12</option>
+      <h4>Off Campus Routes:</h4>
+      <select id="Off Campus" class="form-select" onchange="offCampusRoutes()" aria-label="routeSelectMap">
+        <option selected>All Off Campus Routes</option>
+        <option value="12">Reveile 12</option>
+        <option value="15">Old Army 15</option>
       </select>
+
+      <h4>On Campus Routes:</h4>
+      <select id="On Campus" class="form-select" onchange="onCampusRoutes()" aria-label="routeSelectMap">
+        <option selected>All On Campus Routes</option>
+        <option value="1">Bonfire 01</option>
+      </select>
+
+      <script>
+        function onCampusRoutes() {
+          var RouteID = document.getElementById('On Campus');
+          if(RouteID.value == 1){
+          var Lata = document.getElementById("id-lat-a");
+          Lata.value = "30.6145540616679";
+          CalcRoute();
+          }
+        }
+
+        function offCampusRoutes() {
+          var RouteID = document.getElementById('Off Campus');
+          switch(RouteID.value){
+            case "12":
+              var Lata = document.getElementById("id-lat-a");
+              Lata.value = "30.6145540616679";
+              var Longa = document.getElementById("id-long-a");
+              Longa.value = "-96.33922012248537";
+              var Latb = document.getElementById("id-lat-b");
+              Latb.value = "30.6145540616679";
+              var Longb = document.getElementById("id-long-b");
+              Longb.value = "-96.33922012248537";
+              var Latc = document.getElementById("id-lat-c");
+              Latc.value = "30.64088174694052";
+              var Longc = document.getElementById("id-long-c");
+              Longc.value = "-96.32902107408029";
+              var Latd = document.getElementById("id-lat-d");
+              Latd.value = "30.64654152635841";
+              var Longd = document.getElementById("id-long-d");
+              Longd.value = "-96.33347336026617";
+              var Late = document.getElementById("id-lat-e");
+              Late.value = "30.656854002458704";
+              var Longe = document.getElementById("id-long-e");
+              Longe.value = "-96.34584687508581";
+              var Latf = document.getElementById("id-lat-f");
+              Latf.value = "30.663241399054574";
+              var Longf = document.getElementById("id-long-f");
+              Longf.value = "-96.351956412979";
+              var Latg = document.getElementById("id-lat-g");
+              Latg.value = "30.656854002458704";
+              var Longg = document.getElementById("id-long-g");
+              Longg.value = "-96.34584687508581";
+              var Lath = document.getElementById("id-lat-h");
+              Lath.value = "30.64654152635841";
+              var Longh = document.getElementById("id-long-h");
+              Longh.value = "-96.33347336026617";
+              CalcRoute();
+              break;
+            case "15":
+              var Lata = document.getElementById("id-lat-a");
+              Lata.value = "30.613498156032207";
+              var Longa = document.getElementById("id-long-a");
+              Longa.value = "-96.34151172749681";
+              var Latb = document.getElementById("id-lat-b");
+              Latb.value = "30.613498156032207";
+              var Longb = document.getElementById("id-long-b");
+              Longb.value = "-96.34151172749681";
+              var Latc = document.getElementById("id-lat-c");
+              Latc.value = "30.616431673978102";
+              var Longc = document.getElementById("id-long-c");
+              Longc.value = "-96.34306745142516";
+              var Latd = document.getElementById("id-lat-d");
+              Latd.value = "30.622037729981514";
+              var Longd = document.getElementById("id-long-d");
+              Longd.value = "-96.34939574742472";
+              var Late = document.getElementById("id-lat-e");
+              Late.value = "30.624866399908782";
+              var Longe = document.getElementById("id-long-e");
+              Longe.value = "-96.35253408794368";
+              var Latf = document.getElementById("id-lat-f");
+              Latf.value = "30.62610215744403";
+              var Longf = document.getElementById("id-long-f");
+              Longf.value = "-96.35584063617631";
+              var Latg = document.getElementById("id-lat-g");
+              Latg.value = "30.6273483216913";
+              var Longg = document.getElementById("id-long-g");
+              Longg.value = "-96.35881437578604";
+              var Lath = document.getElementById("id-lat-h");
+              Lath.value = "30.6284842074362";
+              var Longh = document.getElementById("id-long-h");
+              Longh.value = "-96.35988406276071";
+              CalcRoute();
+              break;
+            default:
+              break;
+          }
+          
+      }
+
+      </script>
 
       <!-- Date Input -->
       <h4>Select Date:</h4>
@@ -85,6 +200,15 @@
   </script>
 
   <script src="{% static 'google_maps.js' %}"></script>
+
+  <script type="text/javascript">
+
+    var MAP_KEY = "{{MAP_KEY|safe}}";
+    var base_country = "{{base_country|safe}}";
+
+  </script>
+
+<script src="{% static 'google_places_waypoints.js' %}"></script>
 
 
 {% endblock %}

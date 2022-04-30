@@ -5,7 +5,53 @@ $.getScript( "https://maps.googleapis.com/maps/api/js?key=" + MAP_KEY + "&librar
 
 })
 
+var auto_fields = ['a', 'b']
 
+function initAutocomplete() {
+
+  for (i = 0; i < auto_fields.length; i++) {
+    var field = auto_fields[i]
+    window['autocomplete_'+field] = new google.maps.places.Autocomplete(
+      document.getElementById('id-google-address-' + field),
+    {
+       types: ['address'],
+       componentRestrictions: {'country': [base_country.toLowerCase()]},
+    })
+  }
+
+  autocomplete_a.addListener('place_changed', function(){
+          onPlaceChanged('a')
+      });
+  autocomplete_b.addListener('place_changed', function(){
+          onPlaceChanged('b')
+      });
+  
+}
+
+
+function onPlaceChanged (add){
+
+    var auto = window['autocomplete_'+add]
+    var el_id = 'id-google-address-'+add
+    var lat_id = 'id-lat-' + add
+    var long_id = 'id-long-' + add
+
+    var geocoder = new google.maps.Geocoder()
+    var address = document.getElementById(el_id).value
+
+    geocoder.geocode( { 'address': address}, function(results, status) {
+
+        if (status == google.maps.GeocoderStatus.OK) {
+            var latitude = results[0].geometry.location.lat();
+            var longitude = results[0].geometry.location.lng();
+
+            $('#' + lat_id).val(latitude) 
+            $('#' + long_id).val(longitude) 
+
+            CalcRoute()
+        } 
+    }); 
+}
 
 function validateForm() {
     var valid = true;

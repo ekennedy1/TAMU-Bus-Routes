@@ -4,6 +4,7 @@ from Main.mixins import Directions
 import requests
 from .models import Routes, Stops
 from django.http import HttpResponse
+from pyproj import Transformer
 
 
 def home(request):
@@ -136,14 +137,16 @@ def refresh_database(request):
 					times_text = t
 				else:
 					times_text = times_text + " " + t
+			transformer = Transformer.from_crs("epsg:102100","epsg:4326")
+			coords = transformer.transform(i.get('Longtitude'), i.get('Latitude'))
 			stops_list.append(Stops(
 				stopID = stop_id,
 				stopNum = stop_num,
 				stopName = i.get('Name'),
 				stopDesc = "This is where the description will go once it is manually added to the database.",
 				route = r,
-				longitude = i.get('Longtitude'),
-				latitude = i.get('Latitude'),
+				longitude = coords[1],
+				latitude = coords[0],
 				timed = i.get('Stop').get('IsTimePoint'),
 				times = times_text
 			))

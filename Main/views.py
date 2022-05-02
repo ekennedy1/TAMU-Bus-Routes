@@ -391,7 +391,6 @@ def stops(request):
 	}
 	return render(request, 'main/stops.html', context)
 
-# TODO: finish
 def update_route(request):
 	request.session["tableDisplay"] = request.GET.get('selectedID', None)
 	return redirect('/routes')

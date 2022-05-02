@@ -79,33 +79,33 @@
       <div class="col-sm-10 text-left">
         <h1>Welcome</h1>
         <div class="table-responsive">
+
+          <!-- Routes Table -->
           <table class="table">
             <thead class="table-light">
               <tr>
                 <th scope="col">Route</th>
-                <th>Name</th>
                 <th>Area</th>
               </tr>
             </thead>
             <tbody>
               {% for item in ROUTES_DISPLAY %}
               <tr>
-                <th scope="row">{{item.Number}}</th>
-                <td>{{item.Name}}</td>
+                <th scope="row">{{item.Number}} {{item.Name}}</th>
                 <td>{{item.Area}}</td>
               </tr>
               <tr>
                 <th></th>
-                <td colspan="2">
+                <td>
+
+                  <!-- Stops Table -->
                   <table class="table">
                     <thead>
                       <tr>
                         <th scope="col">Stop</th>
                         <th>Name</th>
                         <th>Description</th>
-                        <th>Longitude</th>
-                        <th>Latitude</th>
-                        <th>Timed</th>
+                        <th>Times</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -114,25 +114,18 @@
                           <th scope="row">{{object.Number}}</th>
                           <td>{{object.Name}}</td>
                           <td>{{object.Desc}}</td>
-                          <td>{{object.Long}}</td>
-                          <td>{{object.Lat}}</td>
-                          <td>{{object.Timed}}</td>
+                          <td>{{object.Times}}</td>
                         </tr>
-                        {% if object.Timed %}
-                          <tr>
-                            <td></td>
-                            <td>Times:</td>
-                            <td colspan="4">{{object.Times}}</td>
-                          </tr>
-                        {% endif %}
                       {% endfor %}
                     </tbody>
                   </table>
+
                 </td>
               </tr>
               {% endfor %}
             </tbody>
           </table>
+
         </div>
       </div>
 

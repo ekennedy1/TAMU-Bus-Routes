@@ -143,7 +143,7 @@ def refresh_database(request):
 				stopID = stop_id,
 				stopNum = stop_num,
 				stopName = i.get('Name'),
-				stopDesc = "This is where the description will go once it is manually added to the database.",
+				stopDesc = "This is where the description would go if it were manually added to the database.",
 				route = r,
 				longitude = coords[1],
 				latitude = coords[0],
@@ -183,8 +183,6 @@ def stops(request):
 				stop["Number"] = s.stopNum
 				stop["Name"] = s.stopName
 				stop["Desc"] = s.stopDesc
-				stop["Long"] = s.longitude
-				stop["Lat"] = s.latitude
 				stop["Timed"] = s.timed
 				times = s.times
 				time_list_temp = times.split()
@@ -210,8 +208,6 @@ def stops(request):
 				stop["Number"] = s.stopNum
 				stop["Name"] = s.stopName
 				stop["Desc"] = s.stopDesc
-				stop["Long"] = s.longitude
-				stop["Lat"] = s.latitude
 				stop["Timed"] = s.timed
 				times = s.times
 				time_list_temp = times.split()
@@ -237,8 +233,6 @@ def stops(request):
 				stop["Number"] = s.stopNum
 				stop["Name"] = s.stopName
 				stop["Desc"] = s.stopDesc
-				stop["Long"] = s.longitude
-				stop["Lat"] = s.latitude
 				stop["Timed"] = s.timed
 				times = s.times
 				time_list_temp = times.split()
@@ -264,8 +258,6 @@ def stops(request):
 				stop["Number"] = s.stopNum
 				stop["Name"] = s.stopName
 				stop["Desc"] = s.stopDesc
-				stop["Long"] = s.longitude
-				stop["Lat"] = s.latitude
 				stop["Timed"] = s.timed
 				times = s.times
 				time_list_temp = times.split()

@@ -149,7 +149,7 @@
           selectedID: $(this).children("option:selected").val(),
         },
       });
-      location.reload();
+      setTimeout(() => {location.reload()}, 100);
     });
   });
 </script>

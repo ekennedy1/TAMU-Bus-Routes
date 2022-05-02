@@ -20,24 +20,97 @@
     <!-- Options Sidebar -->
     <div class="col-sm-2 sidenav">
 
+      <input type="hidden" class="geo" id="id-lat-a" value="">
+      <input type="hidden" class="geo" id="id-long-a" value="">
+      <input type="hidden" class="geo" id="id-lat-b" value="">
+      <input type="hidden" class="geo" id="id-long-b" value="">
+      <input type="hidden" class="geo" id="id-lat-c" value="">
+      <input type="hidden" class="geo" id="id-long-c" value="">
+      <input type="hidden" class="geo" id="id-lat-d" value="">
+      <input type="hidden" class="geo" id="id-long-d" value="">
+      <input type="hidden" class="geo" id="id-lat-e" value="">
+      <input type="hidden" class="geo" id="id-long-e" value="">
+      <input type="hidden" class="geo" id="id-lat-f" value="">
+      <input type="hidden" class="geo" id="id-long-f" value="">
+      <input type="hidden" class="geo" id="id-lat-g" value="">
+      <input type="hidden" class="geo" id="id-long-g" value="">
+      <input type="hidden" class="geo" id="id-lat-h" value="">
+      <input type="hidden" class="geo" id="id-long-h" value="">
+      <input type="hidden" class="geo" id="id-lat-i" value="">
+      <input type="hidden" class="geo" id="id-long-i" value="">
+      <input type="hidden" class="geo" id="id-lat-j" value="">
+      <input type="hidden" class="geo" id="id-long-j" value="">
+      <input type="hidden" class="geo" id="id-lat-k" value="">
+      <input type="hidden" class="geo" id="id-long-k" value="">
+      <input type="hidden" class="geo" id="id-lat-l" value="">
+      <input type="hidden" class="geo" id="id-long-l" value="">
+      <input type="hidden" class="geo" id="id-lat-m" value="">
+      <input type="hidden" class="geo" id="id-long-m" value="">
+      <input type="hidden" class="geo" id="id-lat-n" value="">
+      <input type="hidden" class="geo" id="id-long-n" value="">
+      <input type="hidden" class="geo" id="id-lat-o" value="">
+      <input type="hidden" class="geo" id="id-long-o" value="">
+      <input type="hidden" class="geo" id="id-lat-p" value="">
+      <input type="hidden" class="geo" id="id-long-p" value="">
+      <input type="hidden" class="geo" id="id-lat-q" value="">
+      <input type="hidden" class="geo" id="id-long-q" value="">
+      <input type="hidden" class="geo" id="id-lat-r" value="">
+      <input type="hidden" class="geo" id="id-long-r" value="">
+      <input type="hidden" class="geo" id="id-lat-s" value="">
+      <input type="hidden" class="geo" id="id-long-s" value="">
+      <input type="hidden" class="geo" id="id-lat-t" value="">
+      <input type="hidden" class="geo" id="id-long-t" value="">
+      <input type="hidden" class="geo" id="id-lat-u" value="">
+      <input type="hidden" class="geo" id="id-long-u" value="">
+      <input type="hidden" class="geo" id="id-lat-v" value="">
+      <input type="hidden" class="geo" id="id-long-v" value="">
+      <input type="hidden" class="geo" id="id-lat-w" value="">
+      <input type="hidden" class="geo" id="id-long-w" value="">
+
       <!-- Route Selection -->
-      <h4>Select Route:</h4>
-      <select class="form-select" aria-label="routeSelectMap">
-        <option selected>All Routes</option>
-        <option value="Reveile 12">Reveile 12</option>
+      <h4>Off Campus Routes:</h4>
+      <select id="Off Campus" class="form-select" onchange="offCampusRoutes()" aria-label="routeSelectMap">
+        <option selected>All Off Campus Routes</option>
+        <option value="12">Reveile 12</option>
+        <option value="112">Nights and Weekends 12-25</option>
+        <option value="15">Old Army 15</option>
+        <option value="22">Excel 22</option>
+        <option value="25">Centerpole 25</option>
+        <option value="26">Rudder 26</option>
+        <option value="27">Ring Dance 27</option>
+        <option value="31">E-Walk 31</option>
+        <option value="34">Fish Camp 34</option>
+        <option value="35">Hullabaloo 35</option>
+        <option value="36">Matthew Gaines 36</option>
+        <option value="40">Century Tree 40</option>
+        <option value="47">RELLIS 47</option>
+        <option value="115">Friday N15</option>
       </select>
 
-      <!-- Date Input -->
-      <h4>Select Date:</h4>
+      <h4>On Campus Routes:</h4>
+      <select id="On Campus" class="form-select" onchange="onCampusRoutes()" aria-label="routeSelectMap">
+        <option selected>All On Campus Routes</option>
+        <option value="1">Bonfire 01</option>
+        <option value="11">Nights & Weekends 01-04</option>
+        <option value="3">Yell Practice 03</option>
+        <option value="13">Nights & Weekends 03-05</option>
+        <option value="4">Gig Em 04</option>
+        <option value="5"> Bush School 05</option>
+        <option value="6">12th Man 06</option>
+        <option value="7">Airport 07</option>
+        <option value="8">Howdy 08</option>
+      </select>
+
+
 
       <!-- Location Inputs -->
       <div class="form-group">
-        <label for="start">Start Address:</label>
-        <input type="text" class="form-control" id="start">
+        <label for="start">Start Address</label>
+        <input type="text"  class="form-control" placeholder="*Start typing address" id="id-google-address-a" name="google_address_a">
       </div>
       <div class="form-group">
-        <label for="end">End Address:</label>
-        <input type="text" class="form-control" id="end">
+        <label for="id-google-address-b">Destination Address</label>
+        <input type="text" class="form-control" placeholder="*Start typing address" id="id-google-address-b" name="google_address_b">
       </div>
       
       <!-- Confirm Input -->
@@ -70,6 +143,44 @@
     var long_c = {{long_c|safe}};
     var lat_d = {{lat_d|safe}};
     var long_d = {{long_d|safe}};
+    var lat_e = {{lat_e|safe}};
+    var long_e = {{long_e|safe}};
+    var lat_f = {{lat_f|safe}};
+    var long_f = {{long_f|safe}};
+    var lat_g = {{lat_g|safe}};
+    var long_g = {{long_g|safe}};
+    var lat_h = {{lat_h|safe}};
+    var long_h = {{long_h|safe}};
+    var lat_i = {{lat_i|safe}};
+    var long_i = {{long_i|safe}};
+    var lat_j = {{lat_j|safe}};
+    var long_j = {{long_j|safe}};
+    var lat_k = {{lat_k|safe}};
+    var long_k = {{long_k|safe}};
+    var lat_l = {{lat_l|safe}};
+    var long_l = {{long_l|safe}};
+    var lat_m = {{lat_m|safe}};
+    var long_m = {{long_m|safe}};
+    var lat_n = {{lat_n|safe}};
+    var long_n = {{long_n|safe}};
+    var lat_o = {{lat_o|safe}};
+    var long_o = {{long_o|safe}};
+    var lat_p = {{lat_p|safe}};
+    var long_p = {{long_p|safe}};
+    var lat_q = {{lat_q|safe}};
+    var long_q = {{long_q|safe}};
+    var lat_r = {{lat_r|safe}};
+    var long_r = {{long_r|safe}};
+    var lat_s = {{lat_s|safe}};
+    var long_s = {{long_s|safe}};
+    var lat_t = {{lat_t|safe}};
+    var long_t = {{long_t|safe}};
+    var lat_u = {{lat_u|safe}};
+    var long_u = {{long_u|safe}};
+    var lat_v = {{lat_v|safe}};
+    var long_v = {{long_v|safe}};
+    var lat_w = {{lat_w|safe}};
+    var long_w = {{long_w|safe}};
     var origin = "{{origin|safe}}";
     var destination = "{{destination|safe}}";
     var directions = {{directions|safe}};
@@ -77,6 +188,15 @@
   </script>
 
   <script src="{% static 'google_maps.js' %}"></script>
+
+  <script type="text/javascript">
+
+    var MAP_KEY = "{{MAP_KEY|safe}}";
+    var base_country = "{{base_country|safe}}";
+
+  </script>
+
+<script src="{% static 'google_places_waypoints.js' %}"></script>
 
 
 {% endblock %}

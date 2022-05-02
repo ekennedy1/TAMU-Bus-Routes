@@ -21,51 +21,133 @@
       <!-- Options Sidebar -->
       <div class="col-sm-2 sidenav">
 
-        <button id="myBtn">See Route</button>
 
-
-
-   <input type="hidden" class="geo" id="id-lat-a" value="30.6145540616679">
-   <input type="hidden" class="geo" id="id-long-a" value="-96.33922012248537">
-   <input type="hidden" class="geo" id="id-lat-b" value="30.6145540616679">
-   <input type="hidden" class="geo" id="id-long-b" value="-96.33922012248537">
-   <input type="hidden" class="geo" id="id-lat-c" value="30.64088174694052">
-   <input type="hidden" class="geo" id="id-long-c" value="-96.32902107408029">
-   <input type="hidden" class="geo" id="id-lat-d" value="30.64654152635841">
-   <input type="hidden" class="geo" id="id-long-d" value="-96.33347336026617">
+   <input type="hidden" class="geo" id="id-lat-a" value="">
+   <input type="hidden" class="geo" id="id-long-a" value="">
+   <input type="hidden" class="geo" id="id-lat-b" value="">
+   <input type="hidden" class="geo" id="id-long-b" value="">
+   <input type="hidden" class="geo" id="id-lat-c" value="">
+   <input type="hidden" class="geo" id="id-long-c" value="">
+   <input type="hidden" class="geo" id="id-lat-d" value="">
+   <input type="hidden" class="geo" id="id-long-d" value="">
+   <input type="hidden" class="geo" id="id-lat-e" value="">
+   <input type="hidden" class="geo" id="id-long-e" value="">
+   <input type="hidden" class="geo" id="id-lat-f" value="">
+   <input type="hidden" class="geo" id="id-long-f" value="">
+   <input type="hidden" class="geo" id="id-lat-g" value="">
+   <input type="hidden" class="geo" id="id-long-g" value="">
+   <input type="hidden" class="geo" id="id-lat-h" value="">
+   <input type="hidden" class="geo" id="id-long-h" value="">
+   <input type="hidden" class="geo" id="id-lat-i" value="">
+   <input type="hidden" class="geo" id="id-long-i" value="">
+   <input type="hidden" class="geo" id="id-lat-j" value="">
+   <input type="hidden" class="geo" id="id-long-j" value="">
+   <input type="hidden" class="geo" id="id-lat-k" value="">
+   <input type="hidden" class="geo" id="id-long-k" value="">
+   <input type="hidden" class="geo" id="id-lat-l" value="">
+   <input type="hidden" class="geo" id="id-long-l" value="">
+   <input type="hidden" class="geo" id="id-lat-m" value="">
+   <input type="hidden" class="geo" id="id-long-m" value="">
+   <input type="hidden" class="geo" id="id-lat-n" value="">
+   <input type="hidden" class="geo" id="id-long-n" value="">
+   <input type="hidden" class="geo" id="id-lat-o" value="">
+   <input type="hidden" class="geo" id="id-long-o" value="">
+   <input type="hidden" class="geo" id="id-lat-p" value="">
+   <input type="hidden" class="geo" id="id-long-p" value="">
+   <input type="hidden" class="geo" id="id-lat-q" value="">
+   <input type="hidden" class="geo" id="id-long-q" value="">
+   <input type="hidden" class="geo" id="id-lat-r" value="">
+   <input type="hidden" class="geo" id="id-long-r" value="">
+   <input type="hidden" class="geo" id="id-lat-s" value="">
+   <input type="hidden" class="geo" id="id-long-s" value="">
+   <input type="hidden" class="geo" id="id-lat-t" value="">
+   <input type="hidden" class="geo" id="id-long-t" value="">
+   <input type="hidden" class="geo" id="id-lat-u" value="">
+   <input type="hidden" class="geo" id="id-long-u" value="">
+   <input type="hidden" class="geo" id="id-lat-v" value="">
+   <input type="hidden" class="geo" id="id-long-v" value="">
+   <input type="hidden" class="geo" id="id-lat-w" value="">
+   <input type="hidden" class="geo" id="id-long-w" value="">
+   
    
 
         <!-- Route Selection -->
-        <h4>Select Route:</h4>
-        <select class="form-select" aria-label="routeSelectMap">
-          <option >All Routes</option>
-          <option selected id="myBtn" >Reveile 12</option>
+        <h4>Off Campus Routes:</h4>
+        <select id="Off Campus" class="form-select" onchange="offCampusRoutes()" aria-label="routeSelectMap">
+          <option selected>All Off Campus Routes</option>
+          <option value="12">Reveile 12</option>
+          <option value="112">Nights and Weekends 12-25</option>
+          <option value="15">Old Army 15</option>
+          <option value="22">Excel 22</option>
+          <option value="25">Centerpole 25</option>
+          <option value="26">Rudder 26</option>
+          <option value="27">Ring Dance 27</option>
+          <option value="31">E-Walk 31</option>
+          <option value="34">Fish Camp 34</option>
+          <option value="35">Hullabaloo 35</option>
+          <option value="36">Matthew Gaines 36</option>
+          <option value="40">Century Tree 40</option>
+          <option value="47">RELLIS 47</option>
+          <option value="115">Friday N15</option>
         </select>
 
-        <script>
-          const element = document.getElementById("myBtn");
-          element.addEventListener("click", myFunction);
-        
-          function myFunction() {
-            CalcRoute();
-          }
-        </script>
+        <h4>On Campus Routes:</h4>
+        <select id="On Campus" class="form-select" onchange="onCampusRoutes()" aria-label="routeSelectMap">
+          <option selected>All On Campus Routes</option>
+          <option value="1">Bonfire 01</option>
+          <option value="11">Nights & Weekends 01-04</option>
+          <option value="3">Yell Practice 03</option>
+          <option value="13">Nights & Weekends 03-05</option>
+          <option value="4">Gig Em 04</option>
+          <option value="5"> Bush School 05</option>
+          <option value="6">12th Man 06</option>
+          <option value="7">Airport 07</option>
+          <option value="8">Howdy 08</option>
+        </select>
 
-        <!-- Date Input -->
-        <h4>Select Date:</h4>
+
+        <br></br>
 
         <!-- Location Inputs -->
         <div class="form-group">
-          <label for="start">Start Address:</label>
-          <input type="text" class="form-control" id="start">
+          <label for="start">Start Address</label>
+          <input type="text"  class="form-control" placeholder="*Start typing address" id="id-google-address-a" name="google_address_a">
         </div>
         <div class="form-group">
-          <label for="end">End Address:</label>
-          <input type="text" class="form-control" id="end">
+          <label for="id-google-address-b">Destination Address</label>
+          <input type="text" class="form-control" placeholder="*Start typing address" id="id-google-address-b" name="google_address_b">
         </div>
         
         <!-- Confirm Input -->
-        <button label="mapNavigate">Navigate</button>
+        <button id="myBtn" label="mapNavigate">Navigate</button>
+
+        <p id="demo"></p>
+
+        <script>
+          const element = document.getElementById("myBtn");
+          element.addEventListener("click", deBug);
+
+          
+          function deBug() {
+            var geocoder = new google.maps.Geocoder();
+            var address = document.getElementById('id-google-address-a').value;
+
+            geocoder.geocode({
+              'address': address
+            }, function(results, status) {
+
+            if (status == google.maps.GeocoderStatus.OK) {
+              var latitude = results[0].geometry.location.lat();
+              var longitude = results[0].geometry.location.lng();
+            }
+            });
+            document.getElementById("demo").innerHTML = latitude;
+            
+              
+          }
+        </script>
+
+      
 
       </div>
 

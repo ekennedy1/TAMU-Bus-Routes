@@ -26,8 +26,46 @@ def map(request):
 	long_c = request.GET.get("long_c", None)
 	lat_d = request.GET.get("lat_d", None)
 	long_d = request.GET.get("long_d", None)
+	lat_e = request.GET.get("lat_e", None)
+	long_e = request.GET.get("long_e", None)
+	lat_f = request.GET.get("lat_f", None)
+	long_f = request.GET.get("long_f", None)
+	lat_g = request.GET.get("lat_g", None)
+	long_g = request.GET.get("long_g", None)
+	lat_h = request.GET.get("lat_h", None)
+	long_h = request.GET.get("long_h", None)
+	lat_i = request.GET.get("lat_i", None)
+	long_i = request.GET.get("long_i", None)
+	lat_j = request.GET.get("lat_j", None)
+	long_j = request.GET.get("long_j", None)
+	lat_k = request.GET.get("lat_k", None)
+	long_k = request.GET.get("long_k", None)
+	lat_l = request.GET.get("lat_l", None)
+	long_l = request.GET.get("long_l", None)
+	lat_m = request.GET.get("lat_m", None)
+	long_m = request.GET.get("long_m", None)
+	lat_n = request.GET.get("lat_n", None)
+	long_n = request.GET.get("long_n", None)
+	lat_o = request.GET.get("lat_o", None)
+	long_o = request.GET.get("long_o", None)
+	lat_p = request.GET.get("lat_p", None)
+	long_p = request.GET.get("long_p", None)
+	lat_q = request.GET.get("lat_q", None)
+	long_q = request.GET.get("long_q", None)
+	lat_r = request.GET.get("lat_r", None)
+	long_r = request.GET.get("long_r", None)
+	lat_s = request.GET.get("lat_s", None)
+	long_s = request.GET.get("long_s", None)
+	lat_t = request.GET.get("lat_t", None)
+	long_t = request.GET.get("long_t", None)
+	lat_u = request.GET.get("lat_u", None)
+	long_u = request.GET.get("long_u", None)
+	lat_v = request.GET.get("lat_v", None)
+	long_v = request.GET.get("long_v", None)
+	lat_w = request.GET.get("lat_w", None)
+	long_w = request.GET.get("long_w", None)
 
-	if lat_a and lat_b and lat_c and lat_d:
+	if lat_a and lat_b and lat_c and lat_d and lat_e and lat_f and lat_g and lat_h and lat_i and lat_j and lat_k and lat_l and lat_m and lat_n and lat_o and lat_p and lat_q and lat_r and lat_s and lat_t and lat_u and lat_v and lat_w:
 		directions = Directions(
 			lat_a= lat_a,
 			long_a=long_a,
@@ -36,7 +74,45 @@ def map(request):
 			lat_c= lat_c,
 			long_c=long_c,
 			lat_d = lat_d,
-			long_d=long_d
+			long_d =long_d,
+			lat_e = lat_e,
+			long_e = long_e,
+			lat_f = lat_f,
+			long_f= long_f,
+			lat_g = lat_g,
+			long_g= long_g,
+			lat_h = lat_h,
+			long_h= long_h,
+			lat_i = lat_i,
+			long_i=long_i,
+			lat_j= lat_j,
+			long_j=long_j,
+			lat_k = lat_k,
+			long_k =long_k,
+			lat_l = lat_l,
+			long_l = long_l,
+			lat_m = lat_m,
+			long_m= long_m,
+			lat_n = lat_n,
+			long_n= long_n,
+			lat_o = lat_o,
+			long_o= long_o,
+			lat_p = lat_p,
+			long_p= long_p,
+			lat_q = lat_q,
+			long_q=long_q,
+			lat_r= lat_r,
+			long_r=long_r,
+			lat_s = lat_s,
+			long_s =long_s,
+			lat_t = lat_t,
+			long_t = long_t,
+			lat_u = lat_u,
+			long_u= long_u,
+			lat_v = lat_v,
+			long_v= long_v,
+			lat_w = lat_w,
+			long_w= long_w
 			)
 	else:
 		return redirect(reverse('main:route'))
@@ -52,6 +128,44 @@ def map(request):
 		"long_c": long_c,
 		"lat_d": lat_d,
 		"long_d": long_d,
+		"lat_e": lat_e,
+		"long_e": long_e,
+		"lat_f": lat_f,
+		"long_f": long_f,
+		"lat_g": lat_g,
+		"long_g": long_g,
+		"lat_h": lat_h,
+		"long_h": long_h,
+		"lat_i": lat_i,
+		"long_i": long_i,
+		"lat_j": lat_j,
+		"long_j": long_j,
+		"lat_k": lat_k,
+		"long_k": long_k,
+		"lat_l": lat_l,
+		"long_l": long_l,
+		"lat_m": lat_m,
+		"long_m": long_m,
+		"lat_n": lat_n,
+		"long_n": long_n,
+		"lat_o": lat_o,
+		"long_o": long_o,
+		"lat_p": lat_p,
+		"long_p": long_p,
+		"lat_q": lat_q,
+		"long_q": long_q,
+		"lat_r": lat_r,
+		"long_r": long_r,
+		"lat_s": lat_s,
+		"long_s": long_s,
+		"lat_t": lat_t,
+		"long_t": long_t,
+		"lat_u": lat_u,
+		"long_u": long_u,
+		"lat_v": lat_v,
+		"long_v": long_v,
+		"lat_w": lat_w,
+		"long_w": long_w,
 		"origin": f'{lat_a}, {long_a}',
 		"destination": f'{lat_b}, {long_b}',
 		"directions": directions,

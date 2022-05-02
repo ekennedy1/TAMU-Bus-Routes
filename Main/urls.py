@@ -11,6 +11,7 @@ urlpatterns = [
     path('routes', views.stops),
     path('updates', views.twitter),
     path('refresh_database', views.refresh_database),
-    path('clear_database', views.clear_database)
+    path('clear_database', views.clear_database),
+    path('update_route', views.update_route),
 ]
 

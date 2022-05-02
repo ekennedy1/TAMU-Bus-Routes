@@ -37,8 +37,10 @@
     }
   </style>
 </head>
+
 <body>
 
+  <!-- Navigation Menu -->
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -53,72 +55,104 @@
     </div>
   </nav>
   
-<div class="container-fluid text-center">    
-  <div class="row content">
-    <div class="col-sm-2 sidenav">
-      <p><a href="#">Left filler</a></p>
-    </div>
-    <div class="col-sm-10 text-left"> 
-      <h1>Welcome</h1>
-      <div class="table-responsive">
-        <table class="table">
-          <thead class="table-light">
-            <tr>
-              <th scope="col">Route</th>
-              <th>Name</th>
-              <th>Area</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for item in ROUTE_LIST %}
-            <tr>
-              <th scope="row">{{item.Number}}</th>
-              <td>{{item.Name}}</td>
-              <td>{{item.Area}}</td>
-            </tr>
-            <tr>
-              <th></th>
-              <td colspan="2">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Stop</th>
-                      <th>Name</th>
-                      <th>Description</th>
-                      <th>Longitude</th>
-                      <th>Latitude</th>
-                      <th>Timed</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {% for object in item.Stops %}
-                      <tr>
-                        <th scope="row">{{object.Number}}</th>
-                        <td>{{object.Name}}</td>
-                        <td>{{object.Desc}}</td>
-                        <td>{{object.Long}}</td>
-                        <td>{{object.Lat}}</td>
-                        <td>{{object.Timed}}</td>
-                      </tr>
-                      {% if object.Timed %}
-                        <tr>
-                          <td></td>
-                          <td>Times:</td>
-                          <td colspan="4">{{object.Times}}</td>
-                        </tr>
-                      {% endif %}
-                    {% endfor %}
-                  </tbody>
-                </table>
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+  <!-- Main Body -->
+  <div class="container-fluid text-center">
+    <div class="row content">
+
+      <!-- Options Sidebar -->
+      <div class="col-sm-2 sidenav">
+        <button><a href="clear_database">Clear Database</a></button>
+        <button><a href="refresh_database">Refresh Database</a></button>
+        <h3>Filter by:</h3>
+        <select class="form-select" id="routeDropdown">
+          <option selected>Select Route</option>
+          <option value="All">All Routes</option>
+          <option value="On">On Campus</option>
+          <option value="Off">Off Campus</option>
+          {% for route in ALL_ROUTES %}
+            <option value={{route.ID}}>{{route.Name}} {{route.Number}}</option>
+          {% endfor %}
+        </select>
       </div>
+
+      <!-- Route Details Table Area -->
+      <div class="col-sm-10 text-left">
+        <h1>Welcome</h1>
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="table-light">
+              <tr>
+                <th scope="col">Route</th>
+                <th>Name</th>
+                <th>Area</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in ROUTES_DISPLAY %}
+              <tr>
+                <th scope="row">{{item.Number}}</th>
+                <td>{{item.Name}}</td>
+                <td>{{item.Area}}</td>
+              </tr>
+              <tr>
+                <th></th>
+                <td colspan="2">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Stop</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Longitude</th>
+                        <th>Latitude</th>
+                        <th>Timed</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for object in item.Stops %}
+                        <tr>
+                          <th scope="row">{{object.Number}}</th>
+                          <td>{{object.Name}}</td>
+                          <td>{{object.Desc}}</td>
+                          <td>{{object.Long}}</td>
+                          <td>{{object.Lat}}</td>
+                          <td>{{object.Timed}}</td>
+                        </tr>
+                        {% if object.Timed %}
+                          <tr>
+                            <td></td>
+                            <td>Times:</td>
+                            <td colspan="4">{{object.Times}}</td>
+                          </tr>
+                        {% endif %}
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
   </div>
-</div>
+
+<script>
+  $(document).ready(function(){
+    $('#routeDropdown').change(function(){
+      $.ajax({
+        url: "/update_route",
+        type: "GET",
+        data: {
+          selectedID: $(this).children("option:selected").val(),
+        },
+      });
+      location.reload();
+    });
+  });
+</script>
 
 </body>
 </html>

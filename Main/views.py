@@ -161,37 +161,134 @@ def refresh_database(request):
 	return HttpResponse({}, content_type="application/json")
 
 def stops(request):
-	routes_list = []
+	all_routes = []
 	for r in Routes.objects.all():
-		route_details = {}
-		route_details["Number"] = r.routeNumber
-		route_details["Name"] = r.routeName
-		route_details["Area"] = r.area
-		stops = []
-		for s in Stops.objects.filter(route=r):
-			stop = {}
-			stop["Number"] = s.stopNum
-			stop["Name"] = s.stopName
-			stop["Desc"] = s.stopDesc
-			stop["Long"] = s.longitude
-			stop["Lat"] = s.latitude
-			stop["Timed"] = s.timed
-			times = s.times
-			time_list_temp = times.split()
-			times = ""
-			for x in time_list_temp:
-				if times == "":
-					times = x
-				else:
-					times = times + ", " + x
-			stop["Times"] = times
-			stops.append(stop)
-		route_details["Stops"] = stops
-		routes_list.append(route_details)
+		all_details = {}
+		all_details["Name"] = r.routeName
+		all_details["Number"] = r.routeNumber
+		all_details["ID"] = r.routeID
+		all_routes.append(all_details)
+	routes_display = []
+	if not request.session.has_key("tableDisplay"):
+		request.session["tableDisplay"] = "All"
+	if request.session["tableDisplay"] == "All":
+		for r in Routes.objects.all():
+			route_details = {}
+			route_details["Number"] = r.routeNumber
+			route_details["Name"] = r.routeName
+			route_details["Area"] = r.area
+			stops = []
+			for s in Stops.objects.filter(route=r):
+				stop = {}
+				stop["Number"] = s.stopNum
+				stop["Name"] = s.stopName
+				stop["Desc"] = s.stopDesc
+				stop["Long"] = s.longitude
+				stop["Lat"] = s.latitude
+				stop["Timed"] = s.timed
+				times = s.times
+				time_list_temp = times.split()
+				times = ""
+				for x in time_list_temp:
+					if times == "":
+						times = x
+					else:
+						times = times + ", " + x
+				stop["Times"] = times
+				stops.append(stop)
+			route_details["Stops"] = stops
+			routes_display.append(route_details)
+	elif request.session["tableDisplay"] == "On":
+		for r in Routes.objects.filter(area="On Campus"):
+			route_details = {}
+			route_details["Number"] = r.routeNumber
+			route_details["Name"] = r.routeName
+			route_details["Area"] = r.area
+			stops = []
+			for s in Stops.objects.filter(route=r):
+				stop = {}
+				stop["Number"] = s.stopNum
+				stop["Name"] = s.stopName
+				stop["Desc"] = s.stopDesc
+				stop["Long"] = s.longitude
+				stop["Lat"] = s.latitude
+				stop["Timed"] = s.timed
+				times = s.times
+				time_list_temp = times.split()
+				times = ""
+				for x in time_list_temp:
+					if times == "":
+						times = x
+					else:
+						times = times + ", " + x
+				stop["Times"] = times
+				stops.append(stop)
+			route_details["Stops"] = stops
+			routes_display.append(route_details)
+	elif request.session["tableDisplay"] == "Off":
+		for r in Routes.objects.filter(area="Off Campus"):
+			route_details = {}
+			route_details["Number"] = r.routeNumber
+			route_details["Name"] = r.routeName
+			route_details["Area"] = r.area
+			stops = []
+			for s in Stops.objects.filter(route=r):
+				stop = {}
+				stop["Number"] = s.stopNum
+				stop["Name"] = s.stopName
+				stop["Desc"] = s.stopDesc
+				stop["Long"] = s.longitude
+				stop["Lat"] = s.latitude
+				stop["Timed"] = s.timed
+				times = s.times
+				time_list_temp = times.split()
+				times = ""
+				for x in time_list_temp:
+					if times == "":
+						times = x
+					else:
+						times = times + ", " + x
+				stop["Times"] = times
+				stops.append(stop)
+			route_details["Stops"] = stops
+			routes_display.append(route_details)
+	else:
+		for r in Routes.objects.filter(routeID=request.session["tableDisplay"]):
+			route_details = {}
+			route_details["Number"] = r.routeNumber
+			route_details["Name"] = r.routeName
+			route_details["Area"] = r.area
+			stops = []
+			for s in Stops.objects.filter(route=r):
+				stop = {}
+				stop["Number"] = s.stopNum
+				stop["Name"] = s.stopName
+				stop["Desc"] = s.stopDesc
+				stop["Long"] = s.longitude
+				stop["Lat"] = s.latitude
+				stop["Timed"] = s.timed
+				times = s.times
+				time_list_temp = times.split()
+				times = ""
+				for x in time_list_temp:
+					if times == "":
+						times = x
+					else:
+						times = times + ", " + x
+				stop["Times"] = times
+				stops.append(stop)
+			route_details["Stops"] = stops
+			routes_display.append(route_details)
 	context = {
-		"ROUTE_LIST": routes_list,
+		"ALL_ROUTES": all_routes,
+		"ROUTES_DISPLAY": routes_display,
 	}
 	return render(request, 'main/stops.html', context)
+
+# TODO: finish
+def update_route(request):
+	request.session["tableDisplay"] = request.GET.get('selectedID', None)
+	return redirect('/routes')
 
 def twitter(request):
     return render(request, 'main/twitter.html')

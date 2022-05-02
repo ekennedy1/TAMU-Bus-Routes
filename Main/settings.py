@@ -14,7 +14,7 @@ DEBUG = True
 
 # Environment Variables
 MAP_KEY = "AIzaSyBxmWtpfIsyoqHltnUwqevXPRydi6nlvYk"
-DATABASE_URL = os.environ.get('DATABASE_URL')
+DATABASE_URL = "postgres://ubmpgdajzkyyla:334faf91a2ed955a33e71a4ada435a408309eaed1c647ae0d6a1fd1f2f48e1c8@ec2-52-21-136-176.compute-1.amazonaws.com:5432/dfbnrvjpoenila"
 
 # Application definition
 

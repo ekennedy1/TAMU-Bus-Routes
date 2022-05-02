@@ -70,7 +70,7 @@
           <option value="On">On Campus</option>
           <option value="Off">Off Campus</option>
           {% for route in ALL_ROUTES %}
-            <option value={{route.ID}}>{{route.Name}} {{route.Number}}</option>
+            <option value={{route.ID}}>{{route.Number}} {{route.Name}}</option>
           {% endfor %}
         </select>
       </div>

@@ -37,7 +37,7 @@ function onPlaceChanged (){
     }); 
 
     if (!place.geometry){
-        document.getElementById('id-google-address').placeholder = "*Begin typing address";
+        document.getElementById('id-google-address').placeholder = "*Start typing address";
     }
     else{
         

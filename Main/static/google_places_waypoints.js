@@ -206,7 +206,7 @@ document.getElementById("mapNavigate").addEventListener("click", function() {
   // for source:
   const ALL_ROUTES = JSON.parse(document.getElementById('ALL_ROUTES').textContent);
   var minDistanceSource = 999999999.9;
-  var minRoute = 1;
+  var minRouteSource = 1;
   var minStopSource = 1;
   for (var i = 0; i < ALL_ROUTES.length; i++) {
     var thisRoute = ALL_ROUTES[i];
@@ -221,41 +221,60 @@ document.getElementById("mapNavigate").addEventListener("click", function() {
       // store minimum & related values -> nearest source stop
       if (distance < minDistanceSource) {
         minDistanceSource = distance;
-        minRoute = i;
+        minRouteSource = i;
         minStopSource = j;
+      }
+    }
+  }
+
+  // determine which routes contain the source stop name
+  var minStopName = ALL_ROUTES[minRouteSource].Stops[minStopSource].Name;
+  console.log("Stop name: " + minStopName);
+  var routeList = [];
+  for (var i = 0; i < ALL_ROUTES.length; i++) {
+    for (var j = 0; j < ALL_ROUTES[i].Stops.length; j++) {
+      if (ALL_ROUTES[i].Stops[j].Name == minStopName) {
+        console.log("Adding route " + ALL_ROUTES[i].Name);
+        routeList.push(i);
+        break;
       }
     }
   }
 
   // for destination:
   var minDistanceDest = 999999999.9;
+  var minRouteDest = minRouteSource;
   var minStopDest = 1;
-  var destRoute = ALL_ROUTES[minRoute];
-  // iterate through each stop of each route
-  for (var j = 0; j < destRoute.Stops.length; j++) {
-    var thisStop = destRoute.Stops[j];
-    // get the lat and long
-    var thisLat = thisStop.Lat;
-    var thisLong = thisStop.Long;
-    // calculate the difference (via hypotenuse)
-    var distance = calcHypotenuse(destCoords.Lat - thisLat, destCoords.Long - thisLong);
-    // store minimum & related values -> nearest dest stop
-    if (distance < minDistanceDest) {
-      minDistanceDest = distance;
-      minStopDest = j;
+  // iterate through each route with the same stop name as the source stop
+  for (var i = 0; i < routeList.length; i++) {
+    currRoute = ALL_ROUTES[routeList[i]];
+    // iterate through each stop of each route
+    for (var j = 0; j < currRoute.Stops.length; j++) {
+      var thisStop = currRoute.Stops[j];
+      // get the lat and long
+      var thisLat = thisStop.Lat;
+      var thisLong = thisStop.Long;
+      // calculate the difference (via hypotenuse)
+      var distance = calcHypotenuse(destCoords.Lat - thisLat, destCoords.Long - thisLong);
+      // store minimum & related values -> nearest dest stop
+      if (distance < minDistanceDest) {
+        minDistanceDest = distance;
+        minRouteDest = routeList[i];
+        minStopDest = j;
+      }
     }
   }
 
-  // output somehow -> call route display for given route ID
-  console.log("Route: " + ALL_ROUTES[minRoute].Name);
-  console.log("Source: " + ALL_ROUTES[minRoute].Stops[minStopSource].Name + "; distance " + minDistanceSource);
-  console.log("Dest: " + ALL_ROUTES[minRoute].Stops[minStopDest].Name + "; distance " + minDistanceDest);
+  // output -> call route display for given route ID
+  console.log("Route: " + ALL_ROUTES[minRouteDest].Name);
+  console.log("Source: " + ALL_ROUTES[minRouteDest].Stops[minStopSource].Name + "; distance " + minDistanceSource);
+  console.log("Dest: " + ALL_ROUTES[minRouteDest].Stops[minStopDest].Name + "; distance " + minDistanceDest);
 
-  if (ALL_ROUTES[minRoute].Area == "On Campus") {
-    document.getElementById("On Campus").value = ALL_ROUTES[minRoute].ID;
+  if (ALL_ROUTES[minRouteDest].Area == "On Campus") {
+    document.getElementById("On Campus").value = ALL_ROUTES[minRouteDest].ID;
     onCampusRoutes()
   } else {
-    document.getElementById("Off Campus").value = ALL_ROUTES[minRoute].ID;
+    document.getElementById("Off Campus").value = ALL_ROUTES[minRouteDest].ID;
     offCampusRoutes()
   }
 

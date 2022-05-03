@@ -15,7 +15,7 @@ function onCampusRoutes() {
       var thisRoute = ALL_ROUTES[i];
       var lastStop = thisRoute.Stops[thisRoute.Stops.length - 1].Number;
       // create all stops w/ latitude and longitude values
-      for (var j = 1; j < lastStop; j++) {
+      for (var j = 0; j < lastStop; j++) {
         var latLong = {
           "lat": thisRoute.Stops[j].Lat,
           "long": thisRoute.Stops[j].Long,
@@ -23,10 +23,10 @@ function onCampusRoutes() {
         latLongList.push(latLong);
       }
       // fill variables until w
-      for (var j = lastStop; j < 24; j++) {
+      for (var j = lastStop; j < 23; j++) {
         var latLong = {
-          "lat": thisRoute.Stops[lastStop - 1].Lat,
-          "long": thisRoute.Stops[lastStop - 1].Long,
+          "lat": thisRoute.Stops[0].Lat,
+          "long": thisRoute.Stops[0].Long,
         };
         latLongList.push(latLong);
       }
@@ -39,93 +39,93 @@ function onCampusRoutes() {
   var Longa = document.getElementById("id-long-a");
   Longa.value = latLongList[0].long;
   var Latb = document.getElementById("id-lat-b");
-  Latb.value = latLongList[1].lat;
+  Latb.value = latLongList[22].lat;
   var Longb = document.getElementById("id-long-b");
-  Longb.value = latLongList[1].long;
+  Longb.value = latLongList[22].long;
   var Latc = document.getElementById("id-lat-c");
-  Latc.value = latLongList[2].lat;
+  Latc.value = latLongList[1].lat;
   var Longc = document.getElementById("id-long-c");
-  Longc.value = latLongList[2].long;
+  Longc.value = latLongList[1].long;
   var Latd = document.getElementById("id-lat-d");
-  Latd.value = latLongList[3].lat;
+  Latd.value = latLongList[2].lat;
   var Longd = document.getElementById("id-long-d");
-  Longd.value = latLongList[3].long;
+  Longd.value = latLongList[2].long;
   var Late = document.getElementById("id-lat-e");
-  Late.value = latLongList[4].lat;
+  Late.value = latLongList[3].lat;
   var Longe = document.getElementById("id-long-e");
-  Longe.value = latLongList[4].long;
+  Longe.value = latLongList[3].long;
   var Latf = document.getElementById("id-lat-f");
-  Latf.value = latLongList[5].lat;
+  Latf.value = latLongList[4].lat;
   var Longf = document.getElementById("id-long-f");
-  Longf.value = latLongList[5].long;
+  Longf.value = latLongList[4].long;
   var Latg = document.getElementById("id-lat-g");
-  Latg.value = latLongList[6].lat;
+  Latg.value = latLongList[5].lat;
   var Longg = document.getElementById("id-long-g");
-  Longg.value = latLongList[6].long;
+  Longg.value = latLongList[5].long;
   var Lath = document.getElementById("id-lat-h");
-  Lath.value = latLongList[7].lat;
+  Lath.value = latLongList[6].lat;
   var Longh = document.getElementById("id-long-h");
-  Longh.value = latLongList[7].long;
+  Longh.value = latLongList[6].long;
   var Lati = document.getElementById("id-lat-i");
-  Lati.value = latLongList[8].lat;
+  Lati.value = latLongList[7].lat;
   var Longi = document.getElementById("id-long-i");
-  Longi.value = latLongList[8].long;
+  Longi.value = latLongList[7].long;
   var Latj = document.getElementById("id-lat-j");
-  Latj.value = latLongList[9].lat;
+  Latj.value = latLongList[8].lat;
   var Longj = document.getElementById("id-long-j");
-  Longj.value = latLongList[9].long;
+  Longj.value = latLongList[8].long;
   var Latk = document.getElementById("id-lat-k");
-  Latk.value = latLongList[10].lat;
+  Latk.value = latLongList[9].lat;
   var Longk = document.getElementById("id-long-k");
-  Longk.value = latLongList[10].long;
+  Longk.value = latLongList[9].long;
   var Latl = document.getElementById("id-lat-l");
-  Latl.value = latLongList[11].lat;
+  Latl.value = latLongList[10].lat;
   var Longl = document.getElementById("id-long-l");
-  Longl.value = latLongList[11].long;
+  Longl.value = latLongList[10].long;
   var Latm = document.getElementById("id-lat-m");
-  Latm.value = latLongList[12].lat;
+  Latm.value = latLongList[11].lat;
   var Longm = document.getElementById("id-long-m");
-  Longm.value = latLongList[12].long;
+  Longm.value = latLongList[11].long;
   var Latn = document.getElementById("id-lat-n");
-  Latn.value = latLongList[13].lat;
+  Latn.value = latLongList[12].lat;
   var Longn = document.getElementById("id-long-n");
-  Longn.value = latLongList[13].long;
+  Longn.value = latLongList[12].long;
   var Lato = document.getElementById("id-lat-o");
-  Lato.value = latLongList[14].lat;
+  Lato.value = latLongList[13].lat;
   var Longo = document.getElementById("id-long-o");
-  Longo.value = latLongList[14].long;
+  Longo.value = latLongList[13].long;
   var Latp = document.getElementById("id-lat-p");
-  Latp.value = latLongList[15].lat;
+  Latp.value = latLongList[14].lat;
   var Longp = document.getElementById("id-long-p");
-  Longp.value = latLongList[15].long;
+  Longp.value = latLongList[14].long;
   var Latq = document.getElementById("id-lat-q");
-  Latq.value = latLongList[16].lat;
+  Latq.value = latLongList[15].lat;
   var Longq = document.getElementById("id-long-q");
-  Longq.value = latLongList[16].long;
+  Longq.value = latLongList[15].long;
   var Latr = document.getElementById("id-lat-r");
-  Latr.value = latLongList[17].lat;
+  Latr.value = latLongList[16].lat;
   var Longr = document.getElementById("id-long-r");
-  Longr.value = latLongList[17].long;
+  Longr.value = latLongList[16].long;
   var Lats = document.getElementById("id-lat-s");
-  Lats.value = latLongList[18].lat;
+  Lats.value = latLongList[17].lat;
   var Longs = document.getElementById("id-long-s");
-  Longs.value = latLongList[18].long;
+  Longs.value = latLongList[17].long;
   var Latt = document.getElementById("id-lat-t");
-  Latt.value = latLongList[19].lat;
+  Latt.value = latLongList[18].lat;
   var Longt = document.getElementById("id-long-t");
-  Longt.value = latLongList[19].long;
+  Longt.value = latLongList[18].long;
   var Latu = document.getElementById("id-lat-u");
-  Latu.value = latLongList[20].lat;
+  Latu.value = latLongList[19].lat;
   var Longu = document.getElementById("id-long-u");
-  Longu.value = latLongList[20].long;
+  Longu.value = latLongList[19].long;
   var Latv = document.getElementById("id-lat-v");
-  Latv.value = latLongList[21].lat;
+  Latv.value = latLongList[20].lat;
   var Longv = document.getElementById("id-long-v");
-  Longv.value = latLongList[21].long;
+  Longv.value = latLongList[20].long;
   var Latw = document.getElementById("id-lat-w");
-  Latw.value = latLongList[22].lat;
+  Latw.value = latLongList[21].lat;
   var Longw = document.getElementById("id-long-w");
-  Longw.value = latLongList[22].long;
+  Longw.value = latLongList[21].long;
   CalcRoute();
 }
 
@@ -139,7 +139,8 @@ function offCampusRoutes() {
       var thisRoute = ALL_ROUTES[i];
       var lastStop = thisRoute.Stops[thisRoute.Stops.length - 1].Number;
       // create all stops w/ latitude and longitude values
-      for (var j = 1; j < lastStop; j++) {
+      for (var j = 0; j < lastStop; j++) {
+        console.log("Stop " + j + ": " + thisRoute.Stops[j].Name);
         var latLong = {
           "lat": thisRoute.Stops[j].Lat,
           "long": thisRoute.Stops[j].Long,
@@ -147,10 +148,10 @@ function offCampusRoutes() {
         latLongList.push(latLong);
       }
       // fill variables until w
-      for (var j = lastStop; j < 24; j++) {
+      for (var j = lastStop; j < 23; j++) {
         var latLong = {
-          "lat": thisRoute.Stops[lastStop - 1].Lat,
-          "long": thisRoute.Stops[lastStop - 1].Long,
+          "lat": thisRoute.Stops[0].Lat,
+          "long": thisRoute.Stops[0].Long,
         };
         latLongList.push(latLong);
       }
@@ -163,93 +164,93 @@ function offCampusRoutes() {
   var Longa = document.getElementById("id-long-a");
   Longa.value = latLongList[0].long;
   var Latb = document.getElementById("id-lat-b");
-  Latb.value = latLongList[1].lat;
+  Latb.value = latLongList[22].lat;
   var Longb = document.getElementById("id-long-b");
-  Longb.value = latLongList[1].long;
+  Longb.value = latLongList[22].long;
   var Latc = document.getElementById("id-lat-c");
-  Latc.value = latLongList[2].lat;
+  Latc.value = latLongList[1].lat;
   var Longc = document.getElementById("id-long-c");
-  Longc.value = latLongList[2].long;
+  Longc.value = latLongList[1].long;
   var Latd = document.getElementById("id-lat-d");
-  Latd.value = latLongList[3].lat;
+  Latd.value = latLongList[2].lat;
   var Longd = document.getElementById("id-long-d");
-  Longd.value = latLongList[3].long;
+  Longd.value = latLongList[2].long;
   var Late = document.getElementById("id-lat-e");
-  Late.value = latLongList[4].lat;
+  Late.value = latLongList[3].lat;
   var Longe = document.getElementById("id-long-e");
-  Longe.value = latLongList[4].long;
+  Longe.value = latLongList[3].long;
   var Latf = document.getElementById("id-lat-f");
-  Latf.value = latLongList[5].lat;
+  Latf.value = latLongList[4].lat;
   var Longf = document.getElementById("id-long-f");
-  Longf.value = latLongList[5].long;
+  Longf.value = latLongList[4].long;
   var Latg = document.getElementById("id-lat-g");
-  Latg.value = latLongList[6].lat;
+  Latg.value = latLongList[5].lat;
   var Longg = document.getElementById("id-long-g");
-  Longg.value = latLongList[6].long;
+  Longg.value = latLongList[5].long;
   var Lath = document.getElementById("id-lat-h");
-  Lath.value = latLongList[7].lat;
+  Lath.value = latLongList[6].lat;
   var Longh = document.getElementById("id-long-h");
-  Longh.value = latLongList[7].long;
+  Longh.value = latLongList[6].long;
   var Lati = document.getElementById("id-lat-i");
-  Lati.value = latLongList[8].lat;
+  Lati.value = latLongList[7].lat;
   var Longi = document.getElementById("id-long-i");
-  Longi.value = latLongList[8].long;
+  Longi.value = latLongList[7].long;
   var Latj = document.getElementById("id-lat-j");
-  Latj.value = latLongList[9].lat;
+  Latj.value = latLongList[8].lat;
   var Longj = document.getElementById("id-long-j");
-  Longj.value = latLongList[9].long;
+  Longj.value = latLongList[8].long;
   var Latk = document.getElementById("id-lat-k");
-  Latk.value = latLongList[10].lat;
+  Latk.value = latLongList[9].lat;
   var Longk = document.getElementById("id-long-k");
-  Longk.value = latLongList[10].long;
+  Longk.value = latLongList[9].long;
   var Latl = document.getElementById("id-lat-l");
-  Latl.value = latLongList[11].lat;
+  Latl.value = latLongList[10].lat;
   var Longl = document.getElementById("id-long-l");
-  Longl.value = latLongList[11].long;
+  Longl.value = latLongList[10].long;
   var Latm = document.getElementById("id-lat-m");
-  Latm.value = latLongList[12].lat;
+  Latm.value = latLongList[11].lat;
   var Longm = document.getElementById("id-long-m");
-  Longm.value = latLongList[12].long;
+  Longm.value = latLongList[11].long;
   var Latn = document.getElementById("id-lat-n");
-  Latn.value = latLongList[13].lat;
+  Latn.value = latLongList[12].lat;
   var Longn = document.getElementById("id-long-n");
-  Longn.value = latLongList[13].long;
+  Longn.value = latLongList[12].long;
   var Lato = document.getElementById("id-lat-o");
-  Lato.value = latLongList[14].lat;
+  Lato.value = latLongList[13].lat;
   var Longo = document.getElementById("id-long-o");
-  Longo.value = latLongList[14].long;
+  Longo.value = latLongList[13].long;
   var Latp = document.getElementById("id-lat-p");
-  Latp.value = latLongList[15].lat;
+  Latp.value = latLongList[14].lat;
   var Longp = document.getElementById("id-long-p");
-  Longp.value = latLongList[15].long;
+  Longp.value = latLongList[14].long;
   var Latq = document.getElementById("id-lat-q");
-  Latq.value = latLongList[16].lat;
+  Latq.value = latLongList[15].lat;
   var Longq = document.getElementById("id-long-q");
-  Longq.value = latLongList[16].long;
+  Longq.value = latLongList[15].long;
   var Latr = document.getElementById("id-lat-r");
-  Latr.value = latLongList[17].lat;
+  Latr.value = latLongList[16].lat;
   var Longr = document.getElementById("id-long-r");
-  Longr.value = latLongList[17].long;
+  Longr.value = latLongList[16].long;
   var Lats = document.getElementById("id-lat-s");
-  Lats.value = latLongList[18].lat;
+  Lats.value = latLongList[17].lat;
   var Longs = document.getElementById("id-long-s");
-  Longs.value = latLongList[18].long;
+  Longs.value = latLongList[17].long;
   var Latt = document.getElementById("id-lat-t");
-  Latt.value = latLongList[19].lat;
+  Latt.value = latLongList[18].lat;
   var Longt = document.getElementById("id-long-t");
-  Longt.value = latLongList[19].long;
+  Longt.value = latLongList[18].long;
   var Latu = document.getElementById("id-lat-u");
-  Latu.value = latLongList[20].lat;
+  Latu.value = latLongList[19].lat;
   var Longu = document.getElementById("id-long-u");
-  Longu.value = latLongList[20].long;
+  Longu.value = latLongList[19].long;
   var Latv = document.getElementById("id-lat-v");
-  Latv.value = latLongList[21].lat;
+  Latv.value = latLongList[20].lat;
   var Longv = document.getElementById("id-long-v");
-  Longv.value = latLongList[21].long;
+  Longv.value = latLongList[20].long;
   var Latw = document.getElementById("id-lat-w");
-  Latw.value = latLongList[22].lat;
+  Latw.value = latLongList[21].lat;
   var Longw = document.getElementById("id-long-w");
-  Longw.value = latLongList[22].long;
+  Longw.value = latLongList[21].long;
   CalcRoute();
 }
 

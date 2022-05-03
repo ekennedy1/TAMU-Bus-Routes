@@ -68,36 +68,23 @@
 
       <!-- Route Selection -->
       <h4>Off Campus Routes:</h4>
-      <select id="Off Campus" class="form-select" onchange="offCampusRoutes()" aria-label="routeSelectMap">
-        <option selected>All Off Campus Routes</option>
-        <option value="12">Reveile 12</option>
-        <option value="112">Nights and Weekends 12-25</option>
-        <option value="15">Old Army 15</option>
-        <option value="22">Excel 22</option>
-        <option value="25">Centerpole 25</option>
-        <option value="26">Rudder 26</option>
-        <option value="27">Ring Dance 27</option>
-        <option value="31">E-Walk 31</option>
-        <option value="34">Fish Camp 34</option>
-        <option value="35">Hullabaloo 35</option>
-        <option value="36">Matthew Gaines 36</option>
-        <option value="40">Century Tree 40</option>
-        <option value="47">RELLIS 47</option>
-        <option value="115">Friday N15</option>
+      <select id="Off Campus" class="form-select" onchange="offCampusRoutes()">
+        <option selected>Select Off Campus Route</option>
+        {% for route in ALL_ROUTES %}
+          {% if route.Area == "Off Campus" %}
+            <option value="{{route.ID}}">{{route.Number}} {{route.Name}}</option>
+          {% endif %}
+        {% endfor %}
       </select>
 
       <h4>On Campus Routes:</h4>
-      <select id="On Campus" class="form-select" onchange="onCampusRoutes()" aria-label="routeSelectMap">
-        <option selected>All On Campus Routes</option>
-        <option value="1">Bonfire 01</option>
-        <option value="11">Nights & Weekends 01-04</option>
-        <option value="3">Yell Practice 03</option>
-        <option value="13">Nights & Weekends 03-05</option>
-        <option value="4">Gig Em 04</option>
-        <option value="5"> Bush School 05</option>
-        <option value="6">12th Man 06</option>
-        <option value="7">Airport 07</option>
-        <option value="8">Howdy 08</option>
+      <select id="On Campus" class="form-select" onchange="onCampusRoutes()">
+        <option selected>Select On Campus Route</option>
+        {% for route in ALL_ROUTES %}
+          {% if route.Area == "On Campus" %}
+            <option value="{{route.ID}}">{{route.Number}} {{route.Name}}</option>
+          {% endif %}
+        {% endfor %}
       </select>
 
       <br></br>
@@ -133,68 +120,69 @@
 
 <script type="text/javascript">
 
-    var MAP_KEY = "{{MAP_KEY|safe}}";
-    var lat_a = {{lat_a|safe}};
-    var long_a = {{long_a|safe}};
-    var lat_b = {{lat_b|safe}};
-    var long_b = {{long_b|safe}};
-    var lat_c = {{lat_c|safe}};
-    var long_c = {{long_c|safe}};
-    var lat_d = {{lat_d|safe}};
-    var long_d = {{long_d|safe}};
-    var lat_e = {{lat_e|safe}};
-    var long_e = {{long_e|safe}};
-    var lat_f = {{lat_f|safe}};
-    var long_f = {{long_f|safe}};
-    var lat_g = {{lat_g|safe}};
-    var long_g = {{long_g|safe}};
-    var lat_h = {{lat_h|safe}};
-    var long_h = {{long_h|safe}};
-    var lat_i = {{lat_i|safe}};
-    var long_i = {{long_i|safe}};
-    var lat_j = {{lat_j|safe}};
-    var long_j = {{long_j|safe}};
-    var lat_k = {{lat_k|safe}};
-    var long_k = {{long_k|safe}};
-    var lat_l = {{lat_l|safe}};
-    var long_l = {{long_l|safe}};
-    var lat_m = {{lat_m|safe}};
-    var long_m = {{long_m|safe}};
-    var lat_n = {{lat_n|safe}};
-    var long_n = {{long_n|safe}};
-    var lat_o = {{lat_o|safe}};
-    var long_o = {{long_o|safe}};
-    var lat_p = {{lat_p|safe}};
-    var long_p = {{long_p|safe}};
-    var lat_q = {{lat_q|safe}};
-    var long_q = {{long_q|safe}};
-    var lat_r = {{lat_r|safe}};
-    var long_r = {{long_r|safe}};
-    var lat_s = {{lat_s|safe}};
-    var long_s = {{long_s|safe}};
-    var lat_t = {{lat_t|safe}};
-    var long_t = {{long_t|safe}};
-    var lat_u = {{lat_u|safe}};
-    var long_u = {{long_u|safe}};
-    var lat_v = {{lat_v|safe}};
-    var long_v = {{long_v|safe}};
-    var lat_w = {{lat_w|safe}};
-    var long_w = {{long_w|safe}};
-    var origin = "{{origin|safe}}";
-    var destination = "{{destination|safe}}";
-    var directions = {{directions|safe}};
+  var MAP_KEY = "{{MAP_KEY|safe}}";
+  var lat_a = {{lat_a|safe}};
+  var long_a = {{long_a|safe}};
+  var lat_b = {{lat_b|safe}};
+  var long_b = {{long_b|safe}};
+  var lat_c = {{lat_c|safe}};
+  var long_c = {{long_c|safe}};
+  var lat_d = {{lat_d|safe}};
+  var long_d = {{long_d|safe}};
+  var lat_e = {{lat_e|safe}};
+  var long_e = {{long_e|safe}};
+  var lat_f = {{lat_f|safe}};
+  var long_f = {{long_f|safe}};
+  var lat_g = {{lat_g|safe}};
+  var long_g = {{long_g|safe}};
+  var lat_h = {{lat_h|safe}};
+  var long_h = {{long_h|safe}};
+  var lat_i = {{lat_i|safe}};
+  var long_i = {{long_i|safe}};
+  var lat_j = {{lat_j|safe}};
+  var long_j = {{long_j|safe}};
+  var lat_k = {{lat_k|safe}};
+  var long_k = {{long_k|safe}};
+  var lat_l = {{lat_l|safe}};
+  var long_l = {{long_l|safe}};
+  var lat_m = {{lat_m|safe}};
+  var long_m = {{long_m|safe}};
+  var lat_n = {{lat_n|safe}};
+  var long_n = {{long_n|safe}};
+  var lat_o = {{lat_o|safe}};
+  var long_o = {{long_o|safe}};
+  var lat_p = {{lat_p|safe}};
+  var long_p = {{long_p|safe}};
+  var lat_q = {{lat_q|safe}};
+  var long_q = {{long_q|safe}};
+  var lat_r = {{lat_r|safe}};
+  var long_r = {{long_r|safe}};
+  var lat_s = {{lat_s|safe}};
+  var long_s = {{long_s|safe}};
+  var lat_t = {{lat_t|safe}};
+  var long_t = {{long_t|safe}};
+  var lat_u = {{lat_u|safe}};
+  var long_u = {{long_u|safe}};
+  var lat_v = {{lat_v|safe}};
+  var long_v = {{long_v|safe}};
+  var lat_w = {{lat_w|safe}};
+  var long_w = {{long_w|safe}};
+  var origin = "{{origin|safe}}";
+  var destination = "{{destination|safe}}";
+  var directions = {{directions|safe}};
 
-  </script>
+</script>
 
-  <script src="{% static 'google_maps.js' %}"></script>
+<script src="{% static 'google_maps.js' %}"></script>
 
-  <script type="text/javascript">
+<script type="text/javascript">
 
-    var MAP_KEY = "{{MAP_KEY|safe}}";
-    var base_country = "{{base_country|safe}}";
+  var MAP_KEY = "{{MAP_KEY|safe}}";
+  var base_country = "{{base_country|safe}}";
 
-  </script>
+</script>
 
+{{ALL_ROUTES|json_script:"ALL_ROUTES"}};
 <script src="{% static 'google_places_waypoints.js' %}"></script>
 
 

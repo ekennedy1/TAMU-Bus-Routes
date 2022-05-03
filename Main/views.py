@@ -17,6 +17,27 @@ def home(request):
 	return render(request, 'main/mapHome.html', context)
 
 def map(request):
+
+	all_routes = []
+	for r in Routes.objects.all():
+		route_details = {}
+		route_details["ID"] = r.routeID
+		route_details["Number"] = r.routeNumber
+		route_details["Name"] = r.routeName
+		route_details["Area"] = r.area
+		stops = []
+		for s in Stops.objects.filter(route=r):
+			stop = {}
+			stop["stopID"] = s.stopID
+			stop["Number"] = s.stopNum
+			stop["Name"] = s.stopName
+			stop["Lat"] = s.latitude
+			stop["Long"] = s.longitude
+			stop["Timed"] = s.timed
+			stop["Times"] = s.times.split()
+			stops.append(stop)
+		route_details["Stops"] = stops
+		all_routes.append(route_details)
     
 	lat_a = request.GET.get("lat_a", None)
 	long_a = request.GET.get("long_a", None)
@@ -120,6 +141,7 @@ def map(request):
 	context = {
 		"MAP_KEY": settings.MAP_KEY,
 		"base_country": settings.BASE_COUNTRY,
+		"ALL_ROUTES": all_routes,
 		"lat_a": lat_a,
 		"long_a": long_a,
 		"lat_b": lat_b,
@@ -173,11 +195,33 @@ def map(request):
 	return render(request, 'main/map.html', context)
 
 def route(request):
+
+	all_routes = []
+	for r in Routes.objects.all():
+		route_details = {}
+		route_details["ID"] = r.routeID
+		route_details["Number"] = r.routeNumber
+		route_details["Name"] = r.routeName
+		route_details["Area"] = r.area
+		stops = []
+		for s in Stops.objects.filter(route=r):
+			stop = {}
+			stop["stopID"] = s.stopID
+			stop["Number"] = s.stopNum
+			stop["Name"] = s.stopName
+			stop["Lat"] = s.latitude
+			stop["Long"] = s.longitude
+			stop["Timed"] = s.timed
+			stop["Times"] = s.times.split()
+			stops.append(stop)
+		route_details["Stops"] = stops
+		all_routes.append(route_details)
     
 	context = {
 		"MAP_KEY": settings.MAP_KEY,
 		"MAP_URL": "https://maps.googleapis.com/maps/api/js?key=" + settings.MAP_KEY + "&callback=initMap",
 		"base_country": settings.BASE_COUNTRY,
+		"ALL_ROUTES": all_routes,
 	}
 	return render(request, 'main/route.html', context)
 

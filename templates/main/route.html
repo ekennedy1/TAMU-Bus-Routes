@@ -71,38 +71,25 @@
    
 
         <!-- Route Selection -->
-        <h4>Off Campus Routes:</h4>
-        <select id="Off Campus" class="form-select" onchange="offCampusRoutes()" aria-label="routeSelectMap">
-          <option selected>All Off Campus Routes</option>
-          <option value="12">Reveile 12</option>
-          <option value="112">Nights and Weekends 12-25</option>
-          <option value="15">Old Army 15</option>
-          <option value="22">Excel 22</option>
-          <option value="25">Centerpole 25</option>
-          <option value="26">Rudder 26</option>
-          <option value="27">Ring Dance 27</option>
-          <option value="31">E-Walk 31</option>
-          <option value="34">Fish Camp 34</option>
-          <option value="35">Hullabaloo 35</option>
-          <option value="36">Matthew Gaines 36</option>
-          <option value="40">Century Tree 40</option>
-          <option value="47">RELLIS 47</option>
-          <option value="115">Friday N15</option>
-        </select>
+      <h4>Off Campus Routes:</h4>
+      <select id="Off Campus" class="form-select" onchange="offCampusRoutes()">
+        <option selected>Select Off Campus Route</option>
+        {% for route in ALL_ROUTES %}
+          {% if route.Area == "Off Campus" %}
+            <option value="{{route.ID}}">{{route.Number}} {{route.Name}}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
 
-        <h4>On Campus Routes:</h4>
-        <select id="On Campus" class="form-select" onchange="onCampusRoutes()" aria-label="routeSelectMap">
-          <option selected>All On Campus Routes</option>
-          <option value="1">Bonfire 01</option>
-          <option value="11">Nights & Weekends 01-04</option>
-          <option value="3">Yell Practice 03</option>
-          <option value="13">Nights & Weekends 03-05</option>
-          <option value="4">Gig Em 04</option>
-          <option value="5"> Bush School 05</option>
-          <option value="6">12th Man 06</option>
-          <option value="7">Airport 07</option>
-          <option value="8">Howdy 08</option>
-        </select>
+      <h4>On Campus Routes:</h4>
+      <select id="On Campus" class="form-select" onchange="onCampusRoutes()">
+        <option selected>Select On Campus Route</option>
+        {% for route in ALL_ROUTES %}
+          {% if route.Area == "On Campus" %}
+            <option value="{{route.ID}}">{{route.Number}} {{route.Name}}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
 
 
         <br></br>
@@ -175,6 +162,7 @@
 
     </script>
 
+  {{ALL_ROUTES|json_script:"ALL_ROUTES"}};
   <script src="{% static 'google_places_waypoints.js' %}"></script>
 
 

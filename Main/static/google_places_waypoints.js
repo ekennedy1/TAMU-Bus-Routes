@@ -6,132 +6,17 @@ $.getScript( "https://maps.googleapis.com/maps/api/js?key=" + MAP_KEY + "&librar
 })
 
 function onCampusRoutes() {
-  const ALL_ROUTES = JSON.parse(document.getElementById('ALL_ROUTES').textContent);
   var RouteID = document.getElementById('On Campus').value;
-  var latLongList = [];
-  for (var i = 0; i < ALL_ROUTES.length; i++) {
-    // find the route identified by the dropdown
-    if (ALL_ROUTES[i].ID == RouteID) {
-      var thisRoute = ALL_ROUTES[i];
-      var lastStop = thisRoute.Stops[thisRoute.Stops.length - 1].Number;
-      // create all stops w/ latitude and longitude values
-      for (var j = 0; j < lastStop; j++) {
-        var latLong = {
-          "lat": thisRoute.Stops[j].Lat,
-          "long": thisRoute.Stops[j].Long,
-        };
-        latLongList.push(latLong);
-      }
-      // fill variables until w
-      for (var j = lastStop; j < 23; j++) {
-        var latLong = {
-          "lat": thisRoute.Stops[0].Lat,
-          "long": thisRoute.Stops[0].Long,
-        };
-        latLongList.push(latLong);
-      }
-      break;
-    }
-  }
-  // fill correct variables with accumulated values
-  var Lata = document.getElementById("id-lat-a");
-  Lata.value = latLongList[0].lat;
-  var Longa = document.getElementById("id-long-a");
-  Longa.value = latLongList[0].long;
-  var Latb = document.getElementById("id-lat-b");
-  Latb.value = latLongList[22].lat;
-  var Longb = document.getElementById("id-long-b");
-  Longb.value = latLongList[22].long;
-  var Latc = document.getElementById("id-lat-c");
-  Latc.value = latLongList[1].lat;
-  var Longc = document.getElementById("id-long-c");
-  Longc.value = latLongList[1].long;
-  var Latd = document.getElementById("id-lat-d");
-  Latd.value = latLongList[2].lat;
-  var Longd = document.getElementById("id-long-d");
-  Longd.value = latLongList[2].long;
-  var Late = document.getElementById("id-lat-e");
-  Late.value = latLongList[3].lat;
-  var Longe = document.getElementById("id-long-e");
-  Longe.value = latLongList[3].long;
-  var Latf = document.getElementById("id-lat-f");
-  Latf.value = latLongList[4].lat;
-  var Longf = document.getElementById("id-long-f");
-  Longf.value = latLongList[4].long;
-  var Latg = document.getElementById("id-lat-g");
-  Latg.value = latLongList[5].lat;
-  var Longg = document.getElementById("id-long-g");
-  Longg.value = latLongList[5].long;
-  var Lath = document.getElementById("id-lat-h");
-  Lath.value = latLongList[6].lat;
-  var Longh = document.getElementById("id-long-h");
-  Longh.value = latLongList[6].long;
-  var Lati = document.getElementById("id-lat-i");
-  Lati.value = latLongList[7].lat;
-  var Longi = document.getElementById("id-long-i");
-  Longi.value = latLongList[7].long;
-  var Latj = document.getElementById("id-lat-j");
-  Latj.value = latLongList[8].lat;
-  var Longj = document.getElementById("id-long-j");
-  Longj.value = latLongList[8].long;
-  var Latk = document.getElementById("id-lat-k");
-  Latk.value = latLongList[9].lat;
-  var Longk = document.getElementById("id-long-k");
-  Longk.value = latLongList[9].long;
-  var Latl = document.getElementById("id-lat-l");
-  Latl.value = latLongList[10].lat;
-  var Longl = document.getElementById("id-long-l");
-  Longl.value = latLongList[10].long;
-  var Latm = document.getElementById("id-lat-m");
-  Latm.value = latLongList[11].lat;
-  var Longm = document.getElementById("id-long-m");
-  Longm.value = latLongList[11].long;
-  var Latn = document.getElementById("id-lat-n");
-  Latn.value = latLongList[12].lat;
-  var Longn = document.getElementById("id-long-n");
-  Longn.value = latLongList[12].long;
-  var Lato = document.getElementById("id-lat-o");
-  Lato.value = latLongList[13].lat;
-  var Longo = document.getElementById("id-long-o");
-  Longo.value = latLongList[13].long;
-  var Latp = document.getElementById("id-lat-p");
-  Latp.value = latLongList[14].lat;
-  var Longp = document.getElementById("id-long-p");
-  Longp.value = latLongList[14].long;
-  var Latq = document.getElementById("id-lat-q");
-  Latq.value = latLongList[15].lat;
-  var Longq = document.getElementById("id-long-q");
-  Longq.value = latLongList[15].long;
-  var Latr = document.getElementById("id-lat-r");
-  Latr.value = latLongList[16].lat;
-  var Longr = document.getElementById("id-long-r");
-  Longr.value = latLongList[16].long;
-  var Lats = document.getElementById("id-lat-s");
-  Lats.value = latLongList[17].lat;
-  var Longs = document.getElementById("id-long-s");
-  Longs.value = latLongList[17].long;
-  var Latt = document.getElementById("id-lat-t");
-  Latt.value = latLongList[18].lat;
-  var Longt = document.getElementById("id-long-t");
-  Longt.value = latLongList[18].long;
-  var Latu = document.getElementById("id-lat-u");
-  Latu.value = latLongList[19].lat;
-  var Longu = document.getElementById("id-long-u");
-  Longu.value = latLongList[19].long;
-  var Latv = document.getElementById("id-lat-v");
-  Latv.value = latLongList[20].lat;
-  var Longv = document.getElementById("id-long-v");
-  Longv.value = latLongList[20].long;
-  var Latw = document.getElementById("id-lat-w");
-  Latw.value = latLongList[21].lat;
-  var Longw = document.getElementById("id-long-w");
-  Longw.value = latLongList[21].long;
-  CalcRoute();
+  campusRoutes(RouteID);
 }
 
 function offCampusRoutes() {
-  const ALL_ROUTES = JSON.parse(document.getElementById('ALL_ROUTES').textContent);
   var RouteID = document.getElementById('Off Campus').value;
+  campusRoutes(RouteID);
+}
+
+function campusRoutes(RouteID) {
+  const ALL_ROUTES = JSON.parse(document.getElementById('ALL_ROUTES').textContent);
   var latLongList = [];
   for (var i = 0; i < ALL_ROUTES.length; i++) {
     // find the route identified by the dropdown
@@ -140,7 +25,6 @@ function offCampusRoutes() {
       var lastStop = thisRoute.Stops[thisRoute.Stops.length - 1].Number;
       // create all stops w/ latitude and longitude values
       for (var j = 0; j < lastStop; j++) {
-        console.log("Stop " + j + ": " + thisRoute.Stops[j].Name);
         var latLong = {
           "lat": thisRoute.Stops[j].Lat,
           "long": thisRoute.Stops[j].Long,
@@ -253,7 +137,6 @@ function offCampusRoutes() {
   Longw.value = latLongList[21].long;
   CalcRoute();
 }
-
 
 var auto_fields = ['a', 'b']
 
@@ -278,40 +161,116 @@ function initAutocomplete() {
   
 }
 
+var sourceCoords = {};
+var destCoords = {};
 
 function onPlaceChanged (add){
 
-    var auto = window['autocomplete_'+add]
-    var el_id = 'id-google-address-'+add
-    var lat_id = 'id-lat-' + add
-    var long_id = 'id-long-' + add
+  var auto = window['autocomplete_'+add]
+  var el_id = 'id-google-address-'+add
+  var lat_id = 'id-lat-' + add
+  var long_id = 'id-long-' + add
 
-    var geocoder = new google.maps.Geocoder()
-    var address = document.getElementById(el_id).value
+  var geocoder = new google.maps.Geocoder()
+  var address = document.getElementById(el_id).value
 
-    geocoder.geocode( { 'address': address}, function(results, status) {
+  geocoder.geocode( { 'address': address}, function(results, status) {
 
-        if (status == google.maps.GeocoderStatus.OK) {
-            var latitude = results[0].geometry.location.lat();
-            var longitude = results[0].geometry.location.lng();
+      if (status == google.maps.GeocoderStatus.OK) {
+          var latitude = results[0].geometry.location.lat();
+          var longitude = results[0].geometry.location.lng();
 
-            $('#' + lat_id).val(latitude) 
-            $('#' + long_id).val(longitude) 
+          if (add == 'a') {
+            sourceCoords["Lat"] = latitude;
+            sourceCoords["Long"] = longitude;
+          }
 
-            CalcRoute()
-        } 
-    }); 
+          if (add == 'b') {
+            destCoords["Lat"] = latitude;
+            destCoords["Long"] = longitude;
+          }
+
+          $('#' + lat_id).val(latitude) 
+          $('#' + long_id).val(longitude) 
+
+          CalcRoute()
+      } 
+  });
 }
 
+function calcHypotenuse(a, b) {
+  return (Math.sqrt((a * a) + (b * b)));
+}
+
+document.getElementById("mapNavigate").addEventListener("click", function() {
+  // for source:
+  const ALL_ROUTES = JSON.parse(document.getElementById('ALL_ROUTES').textContent);
+  var minDistanceSource = 999999999.9;
+  var minRoute = 1;
+  var minStopSource = 1;
+  for (var i = 0; i < ALL_ROUTES.length; i++) {
+    var thisRoute = ALL_ROUTES[i];
+    // iterate through each stop of each route
+    for (var j = 0; j < thisRoute.Stops.length; j++) {
+      var thisStop = thisRoute.Stops[j];
+      // get the lat and long
+      var thisLat = thisStop.Lat;
+      var thisLong = thisStop.Long;
+      // calculate the difference (via hypotenuse)
+      var distance = calcHypotenuse(sourceCoords.Lat - thisLat, sourceCoords.Long - thisLong);
+      // store minimum & related values -> nearest source stop
+      if (distance < minDistanceSource) {
+        minDistanceSource = distance;
+        minRoute = i;
+        minStopSource = j;
+      }
+    }
+  }
+
+  // for destination:
+  var minDistanceDest = 999999999.9;
+  var minStopDest = 1;
+  var destRoute = ALL_ROUTES[minRoute];
+  // iterate through each stop of each route
+  for (var j = 0; j < destRoute.Stops.length; j++) {
+    var thisStop = destRoute.Stops[j];
+    // get the lat and long
+    var thisLat = thisStop.Lat;
+    var thisLong = thisStop.Long;
+    // calculate the difference (via hypotenuse)
+    var distance = calcHypotenuse(destCoords.Lat - thisLat, destCoords.Long - thisLong);
+    // store minimum & related values -> nearest dest stop
+    if (distance < minDistanceDest) {
+      minDistanceDest = distance;
+      minStopDest = j;
+    }
+  }
+
+  // output somehow -> call route display for given route ID
+  console.log("Route: " + ALL_ROUTES[minRoute].Name);
+  console.log("Source: " + ALL_ROUTES[minRoute].Stops[minStopSource].Name + "; distance " + minDistanceSource);
+  console.log("Dest: " + ALL_ROUTES[minRoute].Stops[minStopDest].Name + "; distance " + minDistanceDest);
+
+  if (ALL_ROUTES[minRoute].Area == "On Campus") {
+    document.getElementById("On Campus").value = ALL_ROUTES[minRoute].ID;
+    onCampusRoutes()
+  } else {
+    document.getElementById("Off Campus").value = ALL_ROUTES[minRoute].ID;
+    offCampusRoutes()
+  }
+
+  // tell user which stops to take
+});
+
 function validateForm() {
-    var valid = true;
-    $('.geo').each(function () {
-        if ($(this).val() === '') {
-            valid = false;
-            return false;
-        }
-    });
-    return valid
+  var valid = true;
+  $('.geo').each(function () {
+      if ($(this).val() === '') {
+          valid = false;
+          return false;
+      }
+  });
+  return valid
 }
 
 

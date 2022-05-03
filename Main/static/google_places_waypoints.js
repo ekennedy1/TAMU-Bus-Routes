@@ -265,6 +265,17 @@ document.getElementById("mapNavigate").addEventListener("click", function() {
     }
   }
 
+  $.ajax({
+    url: "/update_stop",
+    type: "GET",
+    data: {
+      routeName: ALL_ROUTES[minRouteDest].Name,
+      routeNumber: ALL_ROUTES[minRouteDest].Number,
+      sourceStop: minStopName,
+      destStop: ALL_ROUTES[minRouteDest].Stops[minStopDest].Name,
+    },
+  });
+
   // output -> call route display for given route ID
   console.log("Route: " + ALL_ROUTES[minRouteDest].Name);
   console.log("Source: " + ALL_ROUTES[minRouteDest].Stops[minStopSource].Name + "; distance " + minDistanceSource);

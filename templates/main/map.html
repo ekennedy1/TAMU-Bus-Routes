@@ -102,6 +102,12 @@
       <!-- Confirm Input -->
       <button id="mapNavigate" label="mapNavigate">Navigate</button>
 
+      <!-- Stop Display -->
+      {% if not ROUTE_NAME == "" %}
+      <h3>{{ROUTE_NUMBER}} {{ROUTE_NAME}}</h3>
+      <h3>From {{SOURCE_STOP}} to {{DEST_STOP}}</h3>
+      {% endif %}
+
     </div>
 
 <div class="map-container">

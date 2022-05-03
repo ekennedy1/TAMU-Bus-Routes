@@ -216,14 +216,32 @@ def route(request):
 			stops.append(stop)
 		route_details["Stops"] = stops
 		all_routes.append(route_details)
+
+	routeName = request.session["routeName"]
+	routeNumber = request.session["routeNumber"]
+	sourceStop = request.session["sourceStop"]
+	destStop = request.session["destStop"]
     
 	context = {
 		"MAP_KEY": settings.MAP_KEY,
 		"MAP_URL": "https://maps.googleapis.com/maps/api/js?key=" + settings.MAP_KEY + "&callback=initMap",
 		"base_country": settings.BASE_COUNTRY,
 		"ALL_ROUTES": all_routes,
+		"ROUTE_NAME": routeName,
+		"ROUTE_NUMBER": routeNumber,
+		"SOURCE_STOP": sourceStop,
+		"DEST_STOP": destStop,
 	}
 	return render(request, 'main/route.html', context)
+
+def update_stop(request):
+	print("Updating stop")
+	request.session["routeName"] = request.GET.get('routeName', None)
+	request.session["routeNumber"] = request.GET.get('routeNumber', None)
+	request.session["sourceStop"] = request.GET.get('sourceStop', None)
+	request.session["destStop"] = request.GET.get('destStop', None)
+	print(request.session["routeName"])
+	return redirect('/home')
 
 def calendar(request):
 	return render(request, 'main/schedule.html')
